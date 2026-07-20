@@ -1,0 +1,216 @@
+
+<!-- HTML Structure -->
+<div class="story-tabs">
+  <div>{{ settings.intro_text }}</div>
+  <button class="tab-link active" onclick="filterStories('all')" data-category="all">All Stories</button>
+  <button class="tab-link" onclick="filterStories('campaigns')" data-category="campaigns">Campaigns</button>
+  <button class="tab-link" onclick="filterStories('collections')" data-category="collections">Collections</button>
+  <button class="tab-link" onclick="filterStories('lifestyle')" data-category="lifestyle">Lifestyle</button>
+  <button class="tab-link" onclick="filterStories('news')" data-category="news">News</button>
+  <button class="tab-link" onclick="filterStories('sustainability')" data-category="sustainability">Sustainability</button>
+</div>
+<div id="stories-content">
+  {% for block in section.blocks %}
+ <div class="story-item" data-category="{{ block.settings.category | downcase }}" style="display: none;">
+   <h3>{{ block.settings.title }}</h3>
+
+  <a href="{{ block.settings.link }}" target="_blank">  <span> {{ block.settings.category }}</span></a>
+  <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.title }}">
+
+</div>
+
+  {% endfor %}
+</div>
+
+<!-- CSS -->
+<style>
+  .story-tabs {
+    margin-bottom: 3%;
+}
+  div#stories-content {
+    margin: 0 10%;
+}
+  .story-item h3, .story-item a {
+    margin: 0 3% !important;
+  }
+
+  #stories-content {
+    column-count: 4; /* Adjust this number for different screen sizes as needed */
+    column-gap: 20px;
+    padding: 20px;
+  }
+
+  .story-item {
+    display: block; /* Change flex to block for proper column handling */
+    break-inside: avoid; /* Prevents breaking the content across columns */
+    background: #fff;
+    /* box-shadow: 0 4px 6px rgba(0,0,0,0.1); */
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px; /* Space between items */
+    transition: transform 0.3s ease;
+  }
+
+  .story-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .story-item img {
+    width: 100%;
+    height: auto; /* Ensure the image scales correctly */
+  }
+
+  .story-item h3 {
+    margin: 16px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .story-item a {
+    color: #aaa;
+    text-decoration: none;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  .story-item a span {
+    display: block;
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 4px;
+  }
+
+  .story-tabs {
+    text-align: center;
+  }
+
+  button.tab-link {
+    color: #aaa;
+    font-weight: 700;
+  }
+
+  button.tab-link.active {
+    color: #000;
+    font-weight: 700;
+  }
+
+  .story-tabs button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background: none;
+  }
+
+  .story-tabs div {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    filterStories('all'); // Load all stories by default
+  });
+
+  function filterStories(category) {
+    const tabs = document.querySelectorAll('.tab-link');
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+      if (tab.getAttribute('data-category') === category) {
+        tab.classList.add('active');
+        console.log('Active tab:', tab.textContent);
+      }
+    });
+
+    const allItems = document.querySelectorAll('.story-item');
+    console.log('Total items:', allItems.length);
+    allItems.forEach(item => {
+      // Display items if the category matches or if the category is 'all' and the item's category is not exclusively 'all'
+      if (item.getAttribute('data-category') === category || (category === 'all' && item.getAttribute('data-category') !== 'all')) {
+        item.style.display = 'grid';
+        console.log('Displaying item:', item.querySelector('h3').textContent);
+      } else {
+        item.style.display = 'none';
+        console.log('Hiding item:', item.querySelector('h3').textContent);
+      }
+    });
+  }
+</script>
+
+<!-- Schema for Theme Settings -->
+{% schema %}
+{
+  "name": "Tabbed Stories",
+  "class": "custom-tabbed-stories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "intro_text",
+      "label": "Introduction Text",
+      "default": "Explore our stories by category."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "story",
+      "name": "Story Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            {
+              "value": "all",
+              "label": "All Stories"
+            },
+            {
+              "value": "campaigns",
+              "label": "Campaigns"
+            },
+            {
+              "value": "collections",
+              "label": "Collections"
+            },
+            {
+              "value": "lifestyle",
+              "label": "Lifestyle"
+            },
+            {
+              "value": "news",
+              "label": "News"
+            },
+            {
+              "value": "sustainability",
+              "label": "Sustainability"
+            }
+          ],
+          "default": "all"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

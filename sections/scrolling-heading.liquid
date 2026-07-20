@@ -1,0 +1,283 @@
+<section class="scrolling-heading-section" id="scrolling-heading-{{ section.id }}">
+  <div class="scrolling-heading-inner">
+    <div class="scrolling-heading-track">
+      {% for block in section.blocks %}
+        <div class="scrolling-heading-item" {{ block.shopify_attributes }}>
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}" class="scrolling-heading-text">
+              {{ block.settings.text }}
+            </a>
+          {% else %}
+            <span class="scrolling-heading-text">
+              {{ block.settings.text }}
+            </span>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      {% for block in section.blocks %}
+        <div class="scrolling-heading-item scrolling-heading-item--clone">
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}" class="scrolling-heading-text">
+              {{ block.settings.text }}
+            </a>
+          {% else %}
+            <span class="scrolling-heading-text">
+              {{ block.settings.text }}
+            </span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    #scrolling-heading-{{ section.id }} {
+      position: relative;
+      overflow: hidden;
+      background: {{ section.settings.bg_color }};
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #scrolling-heading-{{ section.id }} .scrolling-heading-inner {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    #scrolling-heading-{{ section.id }} .scrolling-heading-track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+
+    #scrolling-heading-{{ section.id }} .scrolling-heading-item {
+      flex: 0 0 auto;
+      margin-right: {{ section.settings.item_spacing }}px;
+    }
+
+    #scrolling-heading-{{ section.id }} .scrolling-heading-text {
+      display: inline-block;
+      text-decoration: none;
+      color: {{ section.settings.text_color }};
+      font-size: {{ section.settings.font_size_desktop }}px;
+      font-weight: {{ section.settings.font_weight }};
+      line-height: 1.1;
+      letter-spacing: {{ section.settings.letter_spacing }}px;
+      text-transform: {{ section.settings.text_transform }};
+      white-space: nowrap;
+    }
+
+    @media (max-width: 749px) {
+      #scrolling-heading-{{ section.id }} .scrolling-heading-text {
+        font-size: {{ section.settings.font_size_mobile }}px;
+      }
+
+      #scrolling-heading-{{ section.id }} .scrolling-heading-item {
+        margin-right: {{ section.settings.item_spacing_mobile }}px;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      const section = document.getElementById('scrolling-heading-{{ section.id }}');
+      if (!section) return;
+
+      const track = section.querySelector('.scrolling-heading-track');
+      if (!track) return;
+
+      let ticking = false;
+      let latestScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      let trackWidth = 0;
+      let maxShift = 0;
+
+      function setSizes() {
+        const items = section.querySelectorAll('.scrolling-heading-item');
+        const originalItems = Array.from(items).filter(item => !item.classList.contains('scrolling-heading-item--clone'));
+
+        trackWidth = 0;
+        originalItems.forEach(item => {
+          trackWidth += item.offsetWidth;
+          const style = window.getComputedStyle(item);
+          trackWidth += parseFloat(style.marginRight) || 0;
+        });
+
+        maxShift = trackWidth;
+        updatePosition();
+      }
+
+      function updatePosition() {
+        latestScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        const speed = {{ section.settings.scroll_speed | json }};
+        const moveX = (latestScrollY * speed) % maxShift;
+        track.style.transform = 'translate3d(' + (-moveX) + 'px, 0, 0)';
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            updatePosition();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', setSizes);
+      window.addEventListener('load', setSizes);
+
+      setSizes();
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Scrolling heading",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "label": "Font size desktop",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Font size mobile",
+      "min": 14,
+      "max": 60,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "default": "700",
+      "options": [
+        { "value": "400", "label": "400" },
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" },
+        { "value": "800", "label": "800" },
+        { "value": "900", "label": "900" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "default": "uppercase",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "capitalize", "label": "Capitalize" },
+        { "value": "lowercase", "label": "Lowercase" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "label": "Item spacing desktop",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "item_spacing_mobile",
+      "label": "Item spacing mobile",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "min": 0.1,
+      "max": 3,
+      "step": 0.1,
+      "default": 0.6
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading_item",
+      "name": "Heading item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "New Collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling heading",
+      "blocks": [
+        { "type": "heading_item" },
+        { "type": "heading_item" },
+        { "type": "heading_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

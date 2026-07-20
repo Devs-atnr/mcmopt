@@ -1,0 +1,109 @@
+
+.introduction {
+    margin-top: 16px;
+}
+.introduction a.monogram_btn {
+    text-decoration: underline;
+        font-family: 'MCMFavorit Variable';
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.video-description p {
+    font-size: 1.4rem;
+    text-align: center;
+    font-family: MCMFavorit Variable;
+}
+.add_Top_space{
+    margin-top:10rem;
+}
+    .image-description h2.align-center{
+        text-align: left;
+    }
+    .gray-border {
+    width: calc(100% - 50px);
+    height: 1px;
+    border-bottom: 1px solid #aaa;
+    margin: 0 auto;
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+}
+@media only screen and (max-width: 800px) {
+    .introduction a.monogram_btn{
+            font-size: 1.1rem;
+    }
+    .image-description h2 {
+        font-family: MCMFavorit-BoldExtended_copy !important;
+        font-size: 2.7rem !important;
+}
+    .itself .introduction {
+    margin-bottom: 2rem;
+}
+    .video-description {
+    margin-top: 7rem;
+    padding: 0 2.8rem;
+}
+    video#custom1753952901020 {
+    width: 100%;
+}
+    .MCm-icon_Banner, .introduction {
+    padding: 0 2.4rem;
+}
+    .introduction.intro-desktop {
+    margin-top: 0;
+            margin-bottom: 2rem;
+}
+    section.Meet_Families {
+    margin-top: 3rem;
+}
+.introduction p, .introduction.intro-desktop {
+    margin-top: 0;
+}
+    .image-description {
+        padding: 2.4rem;
+    }
+}
+h2.title.title-Meet{
+    width: 100%;
+}
+@media only screen and (min-width: 800px) {
+        .wrapper-top {
+        border-top: 0;
+    }
+    .introduction a.monogram_btn {
+    font-size: 1.2rem;
+}
+    video#custom1753952901020 {
+    width: 80%;
+    margin: 0 auto;
+}
+    .itself-wrapper_col{
+        display: flex;
+        gap: 60px;
+    }
+    .image-description h2.align-center{
+        margin-bottom: 2%;
+        margin-top: 4%;
+    }
+    .itself-wrapper {
+    display: flex;
+    gap: 60px;
+    padding: 5rem 0;
+}
+    .pressHero_video{
+        padding: 3% 3% 4%;
+    }
+    .video-description {
+    width: 47.9%;
+    margin: 0 auto 30px;
+}
+.image-description h2.align-center {
+    width: 48%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  font-family: MCMFavorit-BoldExtended_copy;
+}
+}

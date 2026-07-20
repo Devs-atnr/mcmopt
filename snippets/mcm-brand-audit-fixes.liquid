@@ -1,0 +1,274 @@
+{%- comment -%}
+  MCM brand audit fixes — aligned with au.mcmworldwide.com guidelines
+{%- endcomment -%}
+<style>
+  /* Typography: navigation 12px per brand spec — size/weight only, keep theme font-family */
+  @media (min-width: 1025px) {
+    .menu-item > a,
+    .menu-level-1 a,
+    .submenu-item > a,
+    .level-3-menu,
+    .level-3-menu a,
+    .menu-lv-item .text,
+    .menu-lv-1__action .text,
+    .menu-lv-2__action .text,
+    .site-nav-title,
+    .site-nav-link {
+      font-size: 11px !important;
+      line-height: 16px !important;
+      letter-spacing: 0 !important;
+    }
+  }
+
+  /* Brand text color — nav/links only, do not touch body font */
+  .menu-item > a,
+  .submenu-item > a,
+  .facet-checkbox,
+  .button,
+  a.link {
+    color: #222;
+  }
+
+  /* Header utility icons always visible on desktop */
+  @media (min-width: 1025px) {
+    .header-navigation .header__icon--cart,
+    .header-navigation .header__icon--wishlist,
+    .header-navigation .header__icon--account,
+    .header-navigation .header__iconItem.header__search,
+    .header-navigation .header-icons .header__icon {
+      display: inline-flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .scrolled-past-header .header-navigation .header-icons .header__icon--cart,
+    .scrolled-past-header .header-navigation .header-icons .header__icon--wishlist,
+    .scrolled-past-header .header-navigation .header-icons .header__icon--account,
+    .section-header-navigation:not(.scrolled-past-header) .header-navigation .header-icons .header__icon--cart,
+    .section-header-navigation:not(.scrolled-past-header) .header-navigation .header-icons .header__icon--wishlist,
+    .section-header-navigation:not(.scrolled-past-header) .header-navigation .header-icons .header__icon--account {
+      display: inline-flex !important;
+    }
+
+    .header-nav-hamburger--style2 .header-icons {
+      max-width: none !important;
+      flex-shrink: 0;
+    }
+  }
+
+  /* Mega menu: iPad / tablet landscape */
+  @media (min-width: 768px) and (max-width: 1366px) {
+    .mega-menu-wrapper {
+      height: 50vh;
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-bottom: 40px !important;
+    }
+
+    li.submenu-item {
+      max-width: 100%;
+      flex: 0 0 50%;
+    }
+
+    html[lang="ar"] .mega-menu-wrapper,
+    [lang="ar"] .mega-menu-wrapper {
+      left: 0 !important;
+      right: 0 !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+
+    .submenu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+  }
+
+  /* FAQ heading overlap fix */
+  .template-page .main-page-title.page-header,
+  .faq-container .page-header,
+  .faq-container .breadcrumb + .page-header {
+    padding-top: calc(var(--header-height, 75px) + 24px) !important;
+    padding-bottom: 24px !important;
+  }
+
+  .section-block-template--23679649349917__collapsible_content_4U6eP4 .halo-block-header .title .text {
+    padding-top: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .rich-text__blocks h2 {
+    line-height: 1.3 !important;
+  }
+
+  /* Color filter: swatch + label aligned side-by-side (no overlap) */
+  .facets__item--swatch .show-color-name.facets__label,
+  .facets__item--swatch .facets__label.show-color-name {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    padding: 6px 8px !important;
+    width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .facets__item--swatch .show-color-name .swatch-input-wrapper {
+    position: relative !important;
+    flex: 0 0 24px !important;
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    display: block !important;
+  }
+
+  .facets__item--swatch .show-color-name .swatch-input-wrapper input[type=checkbox] {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 24px !important;
+    height: 24px !important;
+    margin: 0 !important;
+    z-index: 2;
+  }
+
+  .facets__item--swatch .show-color-name .swatch-input__label,
+  .facets__item--swatch .show-color-name .facet-checkbox {
+    position: relative !important;
+    display: block !important;
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    border-radius: 50% !important;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .facets__item--swatch .show-color-name .swatch-input__label:before,
+  .facets__item--swatch .show-color-name .facet-checkbox:before,
+  .facets__item--swatch .show-color-name .swatch-input__label:after,
+  .facets__item--swatch .show-color-name .facet-checkbox:after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .facets__item--swatch .swatch,
+  .facets__item--swatch .pattern,
+  .facets__item--swatch .swatch-input__label .pattern,
+  .facets__item--swatch .show-color-name .pattern {
+    min-width: 24px !important;
+    min-height: 24px !important;
+    width: 24px !important;
+    height: 24px !important;
+    max-width: 24px !important;
+    max-height: 24px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    display: block !important;
+    background-size: cover !important;
+    background-position: center !important;
+    flex-shrink: 0;
+  }
+
+  .facets__item--swatch .pattern--white {
+    border: 1px solid #ccc !important;
+  }
+
+  .facets__item--swatch .show-color-name .facet-checkbox__text,
+  .facets__item--swatch .show-color-name .facet-checkbox__text-label {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+    color: #222 !important;
+    white-space: normal;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .facets__item--swatch .swatch--unavailable {
+    background: linear-gradient(135deg, #eee 45%, #fff 45%, #fff 55%, #eee 55%) !important;
+  }
+
+  .facets__list.facets-layout-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  li.list-menu__item.facets__item.facets__item--swatch {
+    height: auto !important;
+    min-height: 40px;
+    display: flex !important;
+    align-items: center;
+  }
+
+  /* Focus indicators */
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #222 !important;
+    outline-offset: 2px !important;
+  }
+
+  .header__icon:focus-visible,
+  .button:focus-visible,
+  .facet-checkbox:focus-visible,
+  .menu-item > a:focus-visible,
+  .nav-title-mobile:focus-visible {
+    outline: 2px solid currentColor !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Mobile menu back button */
+  .nav-title-mobile {
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #222;
+  }
+
+  html[lang="ar"] .nav-title-mobile {
+    text-align: right;
+  }
+
+  /* Price filter: left-aligned amounts + correct SAR label */
+  .facets__price--box .filter__price {
+    text-align: left !important;
+    direction: ltr !important;
+    padding: 12px 12px 12px 42px !important;
+  }
+
+  .facets__price--box .field__currency {
+    left: 10px !important;
+    right: auto !important;
+    font-size: 11px !important;
+    white-space: nowrap;
+  }
+
+  body.layout_rtl .facets__price--box .filter__price,
+  html[lang="ar"] .facets__price--box .filter__price {
+    text-align: left !important;
+    direction: ltr !important;
+    padding: 12px 12px 12px 42px !important;
+  }
+</style>

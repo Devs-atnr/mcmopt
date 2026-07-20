@@ -1,0 +1,864 @@
+<!-- Include Custom Stylesheet -->
+{{ 'mcm-icon-edits.css' | asset_url | stylesheet_tag }}
+
+<!-- MCM Hero Section -->
+<section class="amp-ca pressHero">
+  <h1 class="MCm-icon-title">{{ page_title }}</h1>
+  <div class="MCm-icon_Banner">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/MCM_ICONS_e2e10bca-e73d-471b-9e00-2844478440e2.webp?v=1784200436" alt="MCM Icons Banner" loading="lazy" />
+  </div>
+  <div class="content-wrapper clearfix scrollTransitionText"> 
+    <div class="left-col"> 
+      <div class="introduction"> 
+        <p>
+          Blending Munich heritage, bold design, and timeless craftsmanship, MCM’s iconic bags have inspired creative rebels since 1976.<br><br>
+          Swipe to discover all the MCM icons.&nbsp;
+        </p> 
+      </div> 
+    </div> 
+    <div class="right-col"></div>
+  </div>
+</section>
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "11.avif,22.avif,33.avif,44.avif,55.avif,66.avif,77.avif,88.avif,99.avif" | split: "," %}
+
+{% assign urls = "/collections/the-new-liz-bags,/collections/mcm-icons-diamond-bags,/collections/mcm-icons-stark-backpacks,/collections/mcm-icons-aren-bags,/collections/dessau-bags,/collections/mcm-icons-toni-bags,/collections/mcm-icons-ella-bags,/collections/mcm-icons-tracy-bags,/collections/mcm-icons-ottomar-bags" | split: "," %}
+
+{% assign titles = "New Liz,3D Diamond Bag,Stark Backpack,Aren,Dessau,Toni,Ella,Tracy,Ottomar" | split: "," %}
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+<p class="txt-sm-regular1"> 
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p>
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!--First -->
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="align-center bold">Meet all the Families</h2> 
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">New Liz: Roominess<br>Redefined</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>
+          Designed for versatility, the New Liz Family features spacious, lightweight shoppers and totes with leather trim and a detachable pouch. It’s a polished essential for life on the move.          
+        </p> 
+        <a href="/collections/the-new-liz-bags" title="3d diamond_bag"><strong><u>Shop the New Liz Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/LIZ_7f3879cf-2106-4803-8f70-41d39bf14363.webp?v=1784205575" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 2 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_liz_editorial4.avif,
+IconsPLP_liz_editorial5.avif,
+IconsPLP_liz_editorial6.avif,
+IconsPLP_liz_editorial4.avif,
+IconsPLP_liz_editorial5.avif,
+IconsPLP_liz_editorial6.avif" | split: "," %}
+
+{% assign urls = "
+/products/mwsfsak02co,
+/products/mwsfsak01bk,
+/products/mwzfsak04co,
+/products/mwsfsak02co,
+/products/mwsfsak01bk,
+/products/mwzfsak04co" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!-- First End -->
+
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2> 
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">Diamond:<br>Geometry Meets Legacy</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>
+          Inspired by MCM’s Bavarian roots, the Diamond Family redefines a classic motif with bold, architectural design. Clean lines form the iconic diamond to blend heritage with modern creativity on crossbodies, totes, clutches, and more.          
+        </p> 
+        <a href="/collections/mcm-icons-diamond-bags" title="3d diamond_bag"><strong><u>Shop the Diamond Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/diamond.webp?v=1784205923" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 2 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_diamond_editorial1.avif,
+IconsPLP_diamond_editorial2.avif,
+IconsPLP_diamond_editorial3.avif,
+IconsPLP_diamond_editorial4.avif,
+IconsPLP_diamond_editorial5.avif,
+IconsPLP_diamond_editorial6.avif" | split: "," %}
+
+{% assign urls = "
+/products/mwsfsak02co,
+/products/mwsfsak01bk,
+/products/mwzfsak04co,
+/products/mwresak02co,
+/products/mwtesak01co,
+/products/mmtfaak01co" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!-- grid 2 -->
+
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2>  
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">Stark: Bold by Design</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>
+          The Stark Family turns the everyday backpack into a bold statement of self-expression. With standout patterns, smart utility, and multiple compartments, it’s MCM’s signature take on stylish functionality.
+        </p> 
+          <a href="/collections/mcm-icons-stark-backpacks" title="3d diamond_bag"><strong><u>Shop The Stark Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/STARK_e8266e27-942c-408d-8fce-b28d3742aff7.webp?v=1784206200" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 3 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_stark_editorial1.avif,
+IconsPLP_stark_editorial2.avif,
+IconsPLP_stark_editorial3.avif,
+IconsPLP_stark_editorial4.avif,
+IconsPLP_stark_editorial5.avif,
+IconsPLP_stark_editorial6.avif
+" | split: "," %}
+
+{% assign urls = "
+/products/mmkfsve05co,
+/products/mmkeave12bk,
+/products/mmkeave15co,
+/products/mmkeave16bk,
+/products/mmkfave101f,
+/products/mmkeave14bk
+" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+   <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!-- grid 2 -->
+
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2>  
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">Aren: The Everyday Hero</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>
+          The Aren Family combines timeless design with daily versatility. From slings, to shoulder and hobo bags, each piece offers effortless style and practicality for refined, everyday use.
+        </p> 
+          <a href="/collections/mcm-icons-aren-bags" title="3d diamond_bag"><strong><u>Shop The Aren Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/AREN_9433432b-1623-4e0f-bed2-e02ec025777f.webp?v=1784206444" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 4 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_aren_editorial1.avif,
+IconsPLP_aren_editorial2.avif,
+IconsPLP_aren_editorial3.avif,
+IconsPLP_aren_editorial4.avif,
+IconsPLP_aren_editorial5.avif,
+IconsPLP_aren_editorial6.avif,
+IconsPLP_aren_editorial7.avif
+" | split: "," %}
+
+{% assign urls = "
+/products/mwsbaer01co,
+/products/mmmeata02bk,
+/products/mmmeata02co,
+/products/mmbfsta01vc,
+/products/mwsesta03bk,
+/products/mmrdsta01bk,
+/products/mmrdsta01bk
+" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!-- grid 2 -->
+
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2>  
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">Dessau: Form Follows Function</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>
+A namesake honoring our Bavarian heritage, the Dessau Family elevates the classic bucket silhouette through signature MCM design codes. Lightweight, adjustable constructions and hands-free versatility define this modern essential.
+        </p> 
+          <a href="/collections/mcm-icons-liz-bags" title="3d diamond_bag"><strong><u>Shop the Dessau Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/IconsPLP_DessauHero.webp?v=1784206689" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 5 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_dessau_editorial1.avif,
+IconsPLP_dessau_editorial2.avif,
+IconsPLP_dessau_editorial3.avif,
+IconsPLP_dessau_editorial4.avif
+" | split: "," %}
+
+{% assign urls = "
+/products/mwpcsvi01co,
+/products/mwpcsvi01i8,
+/products/mwpcsvi01wt,
+/products/mwpcsvi01wt
+" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!-- grid 2 -->
+
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2>  
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">Toni: Always on the Move</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>
+Minimalist and made for motion, the Toni Family offers sleek silhouettes with smart function. Accompanied by top-zip and leather strap for handsfree wear, these shoppers are tailored for day-to-night city life and understated sophistication.
+        </p> 
+          <a href="/collections/mcm-icons-toni-bags" title="3d diamond_bag"><strong><u>Shop the Toni Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/toni_6614206b-f247-4b1b-ae0c-294f415933ba.webp?v=1784206884" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 6 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_toni_editorial1.avif,
+IconsPLP_toni_editorial2.avif,
+IconsPLP_toni_editorial3.avif,
+IconsPLP_toni_editorial4.avif,
+IconsPLP_toni_editorial5.avif,
+IconsPLP_toni_editorial6.avif,
+IconsPLP_toni_editorial7.avif
+" | split: "," %}
+
+{% assign urls = "
+/products/mwpaatn03co,
+/products/mwpaatn04bk,
+/products/mwpaatn04co,
+/products/mwpfamt081f,
+/products/mwpfamt071f,
+/products/mwpaatn04i8,
+/products/mwpaatn04i8
+" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!-- grid 2 -->
+
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2>  
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">Ella: Confidently Timeless</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>The Ella Family delivers modern elegance through softly structured and subtlely detailed handbags. Made for daily wear, it includes leather handles, detachable straps, and a padlock-adorned hang tag to blend quiet confidence with timeless design.
+        </p> 
+          <a href="/collections/mcm-icons-ella-bags" title="3d diamond_bag"><strong><u>Shop the Ella Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/ELLA_1.webp?v=1784207089" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 7 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_ella_editorial1.avif,
+IconsPLP_ella_editorial2.avif,
+IconsPLP_ella_editorial3.avif,
+IconsPLP_ella_editorial4.avif,
+IconsPLP_ella_editorial5.avif
+" | split: "," %}
+
+{% assign urls = "
+/products/mwbesea02co,
+/products/mwbesea01bk,
+/products/mwbesea02wt,
+/products/mwbfaea031f,
+/products/mwbesea08i9
+" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!-- grid 2 -->
+
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2>  
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">Tracy: Sophisticated Silhouettes</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>Compact yet refined, the Tracy Family features smaller accessories like wallets, crossbodies, and shoulder bags. With convertible straps, it’s where classic elegance meets modern utility.
+        </p> 
+          <a href="/collections/mcm-icons-tracy-bags" title="3d diamond_bag"><strong><u>Shop the Tracy Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/TRACY_0cda283c-e127-4d6f-bd04-6d0511fb19ce.webp?v=1784207237" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 8 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_tracy_editorial1.avif,
+IconsPLP_tracy_editorial2.avif,
+IconsPLP_tracy_editorial3.avif,
+IconsPLP_tracy_editorial4.avif,
+IconsPLP_tracy_editorial5.avif,
+IconsPLP_tracy_editorial6.avif
+" | split: "," %}
+
+{% assign urls = "
+/products/mwscsxt02co,
+/products/mweaapa02co,
+/products/mwraame01co,
+/products/mwrfsxt01co,
+/products/mwrbawo05co,
+/products/mwrbawo05co
+" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<!-- grid 2 -->
+
+<!-- MCM Family Section -->
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2>  
+  </div>
+
+  <div class="wrapper-top">
+    <!-- Text Column -->
+    <div class="col-Meet">
+      <div class="gray-border">&nbsp;</div> <div class="detail-wrapper"> 
+        <h2 class="title title-Meet">Ottomar: The Globetrotter</h2> 
+      </div>
+      <div class="introduction intro-desktop"> 
+        <p>Rooted in MCM’s travel legacy, the Ottomar Family offers durable luggage, trunks, and weekender bags, stylishly crafted for today’s journeys. It's a timeless travel companion with a modern edge.
+        </p> 
+          <a href="/collections/mcm-icons-ottomar-bags" title="3d diamond_bag"><strong><u>Shop the Ottomar Family</u></strong></a>
+      </div>
+    <!-- Image Column -->
+    <div class="col-Meeter">
+      <div class="image-slider-with-details-carousel">
+        <picture class="lazy-image-loaded"> 
+          <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/OTTOMAR_3b72b4e9-73e4-4017-87eb-7fdbeaff020a.webp?v=1784207431" alt="Diamond Family Image" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- slider 9 -->
+
+<!-- MCM Icon Slider (Swiper Carousel) -->
+<section class="MCm-icon-slider how-to-carousel">
+  <div class="slider-23dsewscs swiper">
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn-a1b2c3 prev-btn-x9y8z7 swiper-button-prev">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Previous" />
+    </div>
+    <div class="nav-btn-a1b2c3 next-btn-w6v5t4 swiper-button-next">
+      <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/large-arrow-hover.svg?v=1752757697" alt="Next" />
+    </div>
+
+    <!-- Slides -->
+{% assign images = "
+IconsPLP_ottomar_editorial1.avif,
+IconsPLP_ottomar_editorial2.avif,
+IconsPLP_ottomar_editorial3.avif,
+IconsPLP_ottomar_editorial4.avif,
+IconsPLP_ottomar_editorial5.avif
+" | split: "," %}
+
+{% assign urls = "
+/products/mmvaavy02co,
+/products/mmvaavy02bk,
+/products/mmvdstt02bk,
+/products/mmvdstt02co,
+/products/mmvaavy01bk
+" | split: "," %}
+
+
+<div class="track-82jksd8 swiper-wrapper">
+  {% for image in images %}
+  <div class="slide-q8weu1 swiper-slide">
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/{{ image }}.avif?v=1752756071" alt="MCM Icon {{ forloop.index }}" loading="lazy">
+    </a>
+<!-- <p class="txt-sm-regular1"> 
+  <a href="{{ urls[forloop.index0] }}" title="{{ titles[forloop.index0] }}" tabindex="0" class="no-outline">
+    Shop the {{ titles[forloop.index0] }}
+  </a><br>
+  <a href="{{ urls[forloop.index0] }}" target="_blank" title="Discover {{ titles[forloop.index0] }}" tabindex="0">
+    Discover more
+  </a>
+</p> -->
+  </div>
+  {% endfor %}
+</div>
+  </div>
+</section>
+
+<section class="Meet_Families">
+  <div class="image-description"> 
+    <h2 class="top_to"><u>Back to Top</u></h2>  
+  </div>
+</section>
+
+<!-- MCM bottom Section -->
+<section class="amp-ca pressHero line_top">
+  <h1 class="MCm-icon-title">Visetos: An Enduring Classic</h1>
+  <div class="MCm-icon_Banner">
+    <img src="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/Visetos__An_Enduring_Classic.avif?v=1784207634" alt="MCM Icons Banner" loading="lazy" />
+  </div>
+  <div class="content-wrapper clearfix scrollTransitionText"> 
+    <div class="left-col"> 
+      <div class="introduction"> 
+        <p>
+          MCM’s iconic Visetos Monogram blends laurel leaves, diamonds, and bold lettering on premium canvas. Since the 1970s, it’s symbolized enduring heritage and creative evolution.<br><br>
+        
+        </p> 
+         <div class="image-descriptionor"> 
+         <a href="/pages/discover-the-visetos-monogram">
+    <h2 class="align-left bold"><u>Discover the Visetos Monogram </u></h2> 
+    </a>
+  </div>
+      </div> 
+    </div> 
+    <div class="right-col"></div>
+  </div>
+</section>
+
+<!-- Include Custom JS -->
+{{ 'mcm-icon-edits.js' | asset_url | script_tag defer }}

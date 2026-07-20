@@ -1,0 +1,109 @@
+{% schema %}
+{
+  "name": "Collection Carousel",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "selected_products",
+      "label": "Select Products",
+      "limit": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Carousel",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+<div id="splide-{{ section.id }}" class="splide collection-carousel" data-collection-carousel>
+  <div class="splide__track">
+    <div class="splide__list">
+      {% if section.settings.selected_products != blank %}
+        {% for product in section.settings.selected_products %}
+          <div class="splide__slide carousel-item">
+            {% render 'product-card-07', product_card_product: product %}
+          </div>
+        {% endfor %}
+      {% elsif section.settings.collection != blank %}
+        {% assign collection = collections[section.settings.collection] %}
+        {% if collection.products.size == 0 %}
+          <p class="splide__slide">No products available in this collection.</p>
+        {% else %}
+          {% for product in collection.products %}
+            <div class="splide__slide carousel-item">
+              {% render 'product-card-07', product_card_product: product %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% else %}
+        <p class="splide__slide">Please select products or a collection.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .collection-carousel {
+     background-color: #f7f7f7;
+    position: relative;
+    width: 100%;
+    padding: 0px 40px; /* Taake arrows ke liye space bache */
+    box-sizing: border-box;
+  }
+
+  .carousel-item {
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  /* Customizing Splide Default Arrows */
+  .splide__arrow {
+    background: white !important;
+    border: 1px solid #222 !important;
+    opacity: 1 !important;
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  .splide__arrow svg {
+    fill: #222 !important;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const isRTL = document.documentElement.dir === 'rtl' || document.body.dir === 'rtl';
+  
+  const splideElement = document.querySelector('#splide-{{ section.id }}');
+  
+  if (splideElement) {
+    new Splide('#splide-{{ section.id }}', {
+      type   : 'loop',       // Isse continuous loop chalega
+      perPage: 6,            // Desktop par 6 products
+      perMove: 1,
+      direction: isRTL ? 'rtl' : 'ltr', // RTL native support
+      pagination: false,     // Dots band karne ke liye
+      gap: '15px',           // Products ke darmyan gap
+      breakpoints: {
+        1025: {
+          perPage: 2,        // Tablets par 2 products
+        },
+        767: {
+          perPage: 1,        // Mobile par 1 product
+        }
+      }
+    }).mount();
+  }
+});
+</script>

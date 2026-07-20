@@ -1,0 +1,405 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+/* Mobile-specific adjustments */
+@media (max-width: 1025px) {
+    .halo-sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100vw;
+        height: 100vh;
+        background-color: #fff;
+        z-index: 1000;
+        transition: left 0.3s ease; /* Smooth sidebar open */
+    }
+div#navigation-mobile .halo-sidebar-wrapper.custom-scrollbar nav.main-nav {
+    margin-bottom: 50px !important;
+}
+
+    /* Show sidebar when class 'show-sidebar' is added */
+    .halo-sidebar.show-sidebar {
+        left: 0;
+    }
+
+    /* Close button styling */
+    .halo-sidebar-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10011;
+        cursor: pointer;
+    }
+
+    /* Menu styling for mobile */
+    .menu-level-1 {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .menu-level-1 > li {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-family: 'MCM Favorit Bold Extended'
+    }
+  .sidebar-bottom-links a{
+    font-size: 12px;
+    font-family: 'MCM Favorit Variable';
+    font-weight: 700 !important;
+  }
+
+    /* Hide level 2 and 3 menus by default */
+    .mobile-menu-level-2, .mobile-menu-level-3 {
+        display: none;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Show submenus when 'show' class is added */
+    .mobile-menu-level-2.show, .mobile-menu-level-3.show {
+         display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin: 10px 0 10px 0;
+    }
+
+    /* Icon for dropdowns */
+    .menu-level-1 > li > a::after, .mobile-menu-level-2 > li.has-submenu > a::after {
+        /* content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 407.436 407.436'%3E%3Cpolygon points='112.814,0 91.566,21.178 273.512,203.718 91.566,386.258 112.814,407.436 315.869,203.718'/%3E%3C/svg%3E")!important;       */
+        
+content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.3 8.07398L6 4.77398L6.94267 3.83132L11.1853 8.07398L6.94267 12.3167L6 11.374L9.3 8.07398Z' fill='%23222222'/%3E%3C/svg%3E")!important;
+
+      
+      width: 10px;
+        display: inline-block;
+        float: right;
+        font-size: 12px;
+    }
+
+    /* Rotate icon when submenu is opened */
+    .menu-level-1 > li > a.is-clicked::after, .mobile-menu-level-2 > li > a.is-clicked::after {
+        transform: rotate(90deg);
+        transition: transform 0.3s ease; /* Smooth transition */
+
+    }
+
+    .mobile-menu-level-2 > li {
+        padding: 0px 10px;
+    }
+
+    .mobile-menu-level-3 > li {
+        padding: 5px 30px;
+    }
+    .mobile-menu-level-2 > li {
+               padding: 5px 30px;
+    }
+
+      .halo-sidebar.halo-sidebar-left.halo-sidebar_menu .halo-sidebar-close svg {
+        fill: #000 !important;
+    }
+
+
+  .sidebar-bottom-links {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 10%;
+}
+  .sidebar-bottom-links a {
+    width: 100% !important;
+    border-bottom: 1px solid #000;
+    margin: 5% 0%;
+}
+  .menu_open .halo-sidebar.halo-sidebar_menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateZ(0);
+    width: 100vw !important;
+}
+}
+  @media (max-width: 1025px) {
+    .sidebar-bottom-links.half-width {
+        width: 45% !important;
+        border-bottom: 1px solid #000 !important;
+        display: flex;
+        align-content: space-between;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+}
+  @media (max-width: 1025px) {
+    .sidebar-bottom-links.full-width {
+        display: flex!important;
+        width: 90%!important;
+        margin-top: 0!important;
+        flex-wrap: wrap!important;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-left: 5%;
+
+    }
+    a.sidebar-bottom-links.half-width svg,a.sidebar-bottom-links.half-width .fa{
+      width:10%;
+      font-size: 20px;
+
+    }
+    .sidebar-bottom-links.full-width .fa {
+        width: 5%;
+        font-size: 20px;
+}
+@media (max-width: 1025px) {
+    .sidebar-bottom-links.full-width.login a {
+        display: flex!important;
+        justify-content: space-between!important;
+    }
+}
+
+}
+
+</style>
+
+
+
+  <div class="halo-sidebar halo-sidebar-left halo-sidebar_menu custom-mobile-menu" id="navigation-mobile">
+    <div class="halo-sidebar-wrapper custom-scrollbar">
+      <button type="button" class="halo-sidebar-close" data-close-sidebar="" role="button"><span class="visually-hidden">Close</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path></svg></button>
+       
+          
+        <nav class="main-nav">
+            <ul class="menu-level-1">
+                {% assign main_menu = linklists.main-menu.links %}
+                {% for link in main_menu %}
+                <li>
+                    {% if link.links.size > 0 %}
+                        <a href="#" class="toggle-submenu">{{ link.title }}</a>
+                        <ul class="mobile-menu-level-2">
+                            {% for child_link in link.links %}
+                            <li class="{% if child_link.links.size > 0 %}has-submenu{% endif %}">
+                                {% if child_link.links.size > 0 %}
+                                    <a href="#" class="toggle-submenu">{{ child_link.title }}</a>
+                                    <ul class="mobile-menu-level-3">
+                                        {% for sub_child_link in child_link.links %}
+                                        <li><a href="{{ sub_child_link.url }}">{{ sub_child_link.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <a href="{{ link.url }}">{{ link.title }}</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+      <div class="sidebar-bottom-links full-width login">
+            <a href="{{ routes.account_login_url }}">Login <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1819 3.18182C10.1819 4.93909 8.75739 6.36364 7.00012 6.36364C5.24285 6.36364 3.8183 4.93909 3.8183 3.18182C3.8183 1.42455 5.24285 0 7.00012 0C8.75739 0 10.1819 1.42455 10.1819 3.18182ZM8.90891 3.18172C8.90891 4.23613 8.05415 5.09089 6.99974 5.09089C5.94534 5.09089 5.09058 4.23613 5.09058 3.18172C5.09058 2.12732 5.94534 1.27255 6.99974 1.27255C8.05415 1.27255 8.90891 2.12732 8.90891 3.18172ZM7 7C10.866 7 14 10.134 14 14H12.7273C12.7273 10.8369 10.1631 8.27277 7.00004 8.27277C3.83697 8.27277 1.27279 10.8369 1.27277 14H0C0 10.134 3.13401 7 7 7Z" fill="#222222"/> </svg></a>
+        </div>
+      	
+		<div class="sidebar-bottom-links full-width">
+		  <a class="sidebar-bottom-links half-width" href="https://www.aramex.com/sa/ar/track/shipments">MANAGE ORDERS <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.333008 2.00001C0.333008 1.26363 0.929962 0.666672 1.66634 0.666672H20.333C21.0694 0.666672 21.6663 1.26363 21.6663 2.00001V17.7576C21.6663 18.494 21.0694 19.0909 20.333 19.0909H1.66634C0.929962 19.0909 0.333008 18.494 0.333008 17.7576V2.00001ZM2.2724 2.60607H19.7269V17.1515H2.2724V2.60607ZM8.09088 3.57558H6.15149V5.51498H8.09088V3.57558ZM15.8485 3.57558H13.9091V5.51498H15.8485V3.57558ZM6.15163 5.51501C6.15163 8.19275 8.32237 10.3635 11.0001 10.3635C13.6779 10.3635 15.8486 8.19275 15.8486 5.51501H13.9092C13.9092 7.12166 12.6068 8.4241 11.0001 8.4241C9.39347 8.4241 8.09103 7.12166 8.09103 5.51501H6.15163Z" fill="#222222"/>
+</svg>
+
+</a>
+		  <a class="sidebar-bottom-links half-width" href="https://mcmworldwide.sa/pages/contact-us">CONTACT US <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.6248 1.6665L14.3341 5.37784V10.6245L10.6248 14.3332H5.37815L1.66748 10.6238V5.37717L5.37815 1.6665H10.6248ZM10.0721 2.99984H5.93015L3.00148 5.92984V10.0718L5.93015 13.0012H10.0721L13.0015 10.0718V5.92917L10.0721 2.99984ZM7.33415 9.99984H8.66748V11.3332H7.33415V9.99984ZM7.33415 4.6665H8.66748V8.6665H7.33415V4.6665Z" fill="#222222"/>
+</svg>
+ </a>
+	
+  
+  <a class="sidebar-bottom-links half-width" href="Tel:0500036721">Call <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.16683 2.66659V13.3333H11.8335V2.66659H5.16683ZM4.50016 1.33325H12.5002C12.677 1.33325 12.8465 1.40349 12.9716 1.52851C13.0966 1.65354 13.1668 1.82311 13.1668 1.99992V13.9999C13.1668 14.1767 13.0966 14.3463 12.9716 14.4713C12.8465 14.5963 12.677 14.6666 12.5002 14.6666H4.50016C4.32335 14.6666 4.15378 14.5963 4.02876 14.4713C3.90373 14.3463 3.8335 14.1767 3.8335 13.9999V1.99992C3.8335 1.82311 3.90373 1.65354 4.02876 1.52851C4.15378 1.40349 4.32335 1.33325 4.50016 1.33325ZM8.50016 11.3333C8.67697 11.3333 8.84654 11.4035 8.97157 11.5285C9.09659 11.6535 9.16683 11.8231 9.16683 11.9999C9.16683 12.1767 9.09659 12.3463 8.97157 12.4713C8.84654 12.5963 8.67697 12.6666 8.50016 12.6666C8.32335 12.6666 8.15378 12.5963 8.02876 12.4713C7.90373 12.3463 7.8335 12.1767 7.8335 11.9999C7.8335 11.8231 7.90373 11.6535 8.02876 11.5285C8.15378 11.4035 8.32335 11.3333 8.50016 11.3333Z" fill="#222222"/>
+</svg>
+</a>
+		  <a class="sidebar-bottom-links half-width" href="https://mcmworldwide.sa/pages/store-locator">Stores<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.5 15.1519L4.25734 10.9092C3.41823 10.0701 2.84679 9.00102 2.61529 7.83714C2.38378 6.67326 2.5026 5.46686 2.95673 4.37051C3.41086 3.27416 4.1799 2.33709 5.16659 1.6778C6.15328 1.01852 7.31332 0.666626 8.5 0.666626C9.68669 0.666626 10.8467 1.01852 11.8334 1.6778C12.8201 2.33709 13.5891 3.27416 14.0433 4.37051C14.4974 5.46686 14.6162 6.67326 14.3847 7.83714C14.1532 9.00102 13.5818 10.0701 12.7427 10.9092L8.5 15.1519ZM11.8 9.96657C12.4526 9.31391 12.897 8.48239 13.077 7.57716C13.2571 6.67193 13.1646 5.73364 12.8114 4.88094C12.4582 4.02825 11.86 3.29944 11.0926 2.78669C10.3252 2.27393 9.42296 2.00024 8.5 2.00024C7.57704 2.00024 6.67481 2.27393 5.90739 2.78669C5.13997 3.29944 4.54183 4.02825 4.18861 4.88094C3.83539 5.73364 3.74294 6.67193 3.92297 7.57716C4.103 8.48239 4.54741 9.31391 5.2 9.96657L8.5 13.2666L11.8 9.96657ZM8.5 7.99991C8.14638 7.99991 7.80724 7.85943 7.55719 7.60938C7.30715 7.35933 7.16667 7.0202 7.16667 6.66657C7.16667 6.31295 7.30715 5.97381 7.55719 5.72377C7.80724 5.47372 8.14638 5.33324 8.5 5.33324C8.85362 5.33324 9.19276 5.47372 9.44281 5.72377C9.69286 5.97381 9.83334 6.31295 9.83334 6.66657C9.83334 7.0202 9.69286 7.35933 9.44281 7.60938C9.19276 7.85943 8.85362 7.99991 8.5 7.99991Z" fill="#222222"/>
+</svg>
+ </a>
+          {% comment %}
+		  <a class="sidebar-bottom-links half-width" href="#">US($)/EN<i class="fa fa-globe" aria-hidden="true"></i>
+</a>
+{% endcomment %}
+   <style>
+     .halo-sidebar-wrapper .localization-form .title {
+    background: #ffffff !important;
+    padding: 0;
+    font-size: 12px !important;
+    font-family: 'MCM Favorit Variable';
+       color: #222222;
+           font-weight: 700 !important;
+
+}
+.halo-sidebar.halo-sidebar-left.halo-sidebar_menu.custom-mobile-menu   #HeaderLanguageList{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0 !important;
+}
+.halo-sidebar.halo-sidebar-left.halo-sidebar_menu.custom-mobile-menu #HeaderLanguageList .disclosure__item{
+       padding:0 !important;
+     }
+.halo-sidebar.halo-sidebar-left.halo-sidebar_menu.custom-mobile-menu   ul#HeaderLanguageList a.link.link--text.disclosure__link.d-flex.flex-align-center {
+    padding: 0;
+        border-bottom: 0 !important;
+}
+p#HeaderLanguageLabel i.fa.fa-globe {
+    width: 10%;
+}
+
+.halo-sidebar.halo-sidebar-left.halo-sidebar_menu.custom-mobile-menu p#HeaderLanguageLabel {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+     .halo-sidebar.halo-sidebar-left.halo-sidebar_menu.custom-mobile-menu .halo-language {
+    width: 90%;
+    margin-left: 5%;
+    border-bottom: 1px solid #000;
+    margin-top: 5%;
+    margin-bottom: 0;
+}
+
+     /* walaa 11-11  */
+
+         .menu-level-1 > li > a::befor, .mobile-menu-level-2 > li.has-submenu > a::befor {
+        content: url(data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 407.436 407.436'%3E%3Cpolygon points='112.814,0 91.566,21.178 273.512,203.718 91.566,386.258 112.814,407.436 315.869,203.718'/%3E%3C/svg%3E) !important;
+        width: 10px !important;
+        display: inline-block;
+        float: right;
+        font-size: 12px;
+    }
+}
+   </style>
+<div class="halo-language">
+  <link rel="stylesheet" href="{{ 'disclosure.css' | asset_url }}" media="all" onload="this.media='all'">
+  <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
+             <p class="title text-left" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.99992 14.6667C4.31792 14.6667 1.33325 11.682 1.33325 8.00004C1.33325 4.31804 4.31792 1.33337 7.99992 1.33337C11.6819 1.33337 14.6666 4.31804 14.6666 8.00004C14.6666 11.682 11.6819 14.6667 7.99992 14.6667ZM6.47325 13.1114C5.81553 11.7162 5.4345 10.2069 5.35125 8.66671H2.70792C2.83764 9.69264 3.26253 10.6588 3.93096 11.4478C4.5994 12.2369 5.48259 12.8148 6.47325 13.1114ZM6.68658 8.66671C6.78725 10.2927 7.25192 11.82 7.99992 13.168C8.76813 11.7844 9.21688 10.2464 9.31325 8.66671H6.68658ZM13.2919 8.66671H10.6486C10.5653 10.2069 10.1843 11.7162 9.52658 13.1114C10.5172 12.8148 11.4004 12.2369 12.0689 11.4478C12.7373 10.6588 13.1622 9.69264 13.2919 8.66671ZM2.70792 7.33337H5.35125C5.4345 5.79323 5.81553 4.28383 6.47325 2.88871C5.48259 3.18529 4.5994 3.76321 3.93096 4.55224C3.26253 5.34127 2.83764 6.30744 2.70792 7.33337ZM6.68725 7.33337H9.31258C9.21642 5.75377 8.7679 4.21573 7.99992 2.83204C7.23171 4.21567 6.78296 5.75372 6.68658 7.33337H6.68725ZM9.52658 2.88871C10.1843 4.28383 10.5653 5.79323 10.6486 7.33337H13.2919C13.1622 6.30744 12.7373 5.34127 12.0689 4.55224C11.4004 3.76321 10.5172 3.18529 9.52658 2.88871Z" fill="#222222"/>
+</svg>
+</p>
+  <span class="ly-custom-0"></span>
+    {% comment %}     
+  {%- if settings.enable_multilang_shopify and localization.available_languages.size > 1 -%}
+  <noscript>
+      {%- form 'localization', id: 'HeaderLanguageFormNoScript', class: 'localization-form' -%}
+      <div class="localization-form__select">
+          <h2 class="visually-hidden" id="HeaderLanguageLabelNoScript">{{ 'localization.language_label' | t }}</h2>
+          <select class="localization-selector link" name="locale_code" aria-labelledby="HeaderLanguageLabelNoScript">
+              {%- for language in localization.available_languages -%}
+              <option value="{{ language.iso_code }}" lang="{{ language.iso_code }}" {%- if language.iso_code==localization.language.iso_code %} selected{% endif %}>
+                  {{ language.endonym_name | capitalize }}
+              </option>
+              {%- endfor -%}
+          </select>
+      </div>
+      <button class="button button--tertiary">{{ 'localization.update_language' | t }}</button>
+      {%- endform -%}
+  </noscript>
+  <localization-form>
+      {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+      <div class="no-js-hidden">
+          <div class="disclosure">
+              <p class="title text-left" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}<i class="fa fa-globe" aria-hidden="true"></i></p>
+    {%- endif %}          
+              <ul id="HeaderLanguageList" role="list" class="disclosure__list list-unstyled custom-scrollbar d-flex flex-align-center flex-wrap">
+                  {%- for language in localization.available_languages -%}
+                    {% assign logo = '' %}
+                    {%- for i in (1..6) -%}
+                      {% capture lang_unit %}lange_{{ i }}{% endcapture %}
+                      {% capture i-lang_unit %}i-lang-{{ i }}{% endcapture %}
+                      {% assign currency_length = settings[i-lang_unit] | size %}
+                        {% if settings[lang_unit] == language.iso_code %}
+                          {% assign logo = settings[i-lang_unit] %}
+                        {% endif %}
+                    {%- endfor -%}
+                    <li class="disclosure__item" tabindex="-1"><a role="button" class="link link--text disclosure__link d-flex flex-align-center{% if language.iso_code == localization.language.iso_code %} disclosure__link--active{% endif %} focus-inset" href="#" hreflang="{{ language.iso_code }}" lang="{{ language.iso_code }}" {% if language.iso_code==localization.language.iso_code %} aria-current="true" {% endif %} data-value="{{ language.iso_code }}"><span class="icon">{{ logo }}</span><span class="text">{{ language.iso_code }}</span></a></li>
+                  {%- endfor -%}
+              </ul>
+          </div>
+          <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+      </div>
+      {%- endform -%}
+  </localization-form>
+    {%- endif -%}
+
+  <script src="{{ 'halo-languages.js' | asset_url }}" defer="defer"></script>
+</div>
+     </a>
+		</div>
+
+    </div>
+    {% endcomment %}     
+</div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('navigation-mobile');
+    const hamburger = document.querySelector('.header__hamburger');
+    const closeBtn = document.querySelector('.halo-sidebar-close');
+
+    function isMobile() {
+        return window.innerWidth <= 1024;
+    }
+
+    function toggleSidebar() {
+        if (isMobile()) {
+            sidebar.classList.toggle('show-sidebar');
+        }
+    }
+
+    // Sidebar toggle for hamburger and close button
+    if (hamburger && closeBtn) {
+        hamburger.addEventListener('click', toggleSidebar);
+        closeBtn.addEventListener('click', toggleSidebar);
+    }
+
+    // Toggle for Level 1 to Level 2 submenu
+    document.querySelectorAll('.menu-level-1 > li').forEach(item => {
+        const submenuToggle = item.querySelector('.toggle-submenu');
+        if (submenuToggle) {
+            submenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                const submenu = item.querySelector('.mobile-menu-level-2');
+                if (submenu) {
+                    submenu.classList.toggle('show');
+                    submenuToggle.classList.toggle('is-clicked');
+                }
+            });
+        }
+    });
+
+    // Toggle for Level 2 to Level 3 submenu
+    document.querySelectorAll('.mobile-menu-level-2 > li.has-submenu').forEach(item => {
+        const submenuToggle = item.querySelector('.toggle-submenu');
+        if (submenuToggle) {
+            submenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                const submenu = item.querySelector('.mobile-menu-level-3');
+                if (submenu) {
+                    submenu.classList.toggle('show');
+                    submenuToggle.classList.toggle('is-clicked');
+                }
+            });
+        }
+    });
+
+    // Close sidebar on outside click for mobile view
+    document.addEventListener('click', function(e) {
+        if (isMobile() && !sidebar.contains(e.target) && sidebar.classList.contains('show-sidebar')) {
+            sidebar.classList.remove('show-sidebar');
+        }
+    });
+});
+
+
+</script>

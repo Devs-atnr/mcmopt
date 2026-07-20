@@ -1,0 +1,453 @@
+{%- if section.settings.display_product_recently_viewed -%}
+    {%- liquid
+        assign as_grid_gap = section.settings.grid_gap
+        assign grid_gap = section.settings.grid_gap | times: 0.5 | append: 'px'
+        assign container = section.settings.product_recently_viewed_container
+        assign limit = section.settings.product_recently_viewed_limit
+        assign layout = section.settings.product_recently_viewed_layout
+        assign infinite_scroll = section.settings.product_recently_viewed_infinite_scroll
+        assign block_title = section.settings.product_recently_viewed_title
+        assign block_title_align = section.settings.product_recently_viewed_title_align
+        assign image_ratio = section.settings.product_recently_viewed_image_ratio
+        assign swipe_on_mobile = section.settings.product_recently_viewed_swipe_on_mobile
+        assign padding_top = section.settings.padding_top | append: 'px'
+        assign padding_bottom = section.settings.padding_bottom | append: 'px'
+        assign products_to_display = limit
+        assign swipe = false
+        if swipe_on_mobile == true and layout == 'grid' and products_to_display > 2
+            assign swipe = true
+        endif
+    -%}
+    <style type="text/css" media="screen">
+        {%- liquid
+            assign product_bg = section.settings.product_bg
+            assign product_bg_gradient = section.settings.product_bg_gradient
+            assign color_title = section.settings.color_title
+            assign border_color_title = section.settings.border_color_title
+            assign fontsize_title = section.settings.fontsize_title
+            assign fontsize_title_mb = section.settings.fontsize_title_mb
+
+            assign mg_top_title = section.settings.mg_top_title
+            assign mg_bottom_title = section.settings.mg_bottom_title
+
+            assign mg_top_desktop = section.settings.mg_top_desktop
+            assign mg_top_tablet = section.settings.mg_top_tablet
+            assign mg_top_mobile = section.settings.mg_top_mobile
+
+            assign mg_bottom_desktop = section.settings.mg_bottom_desktop
+            assign mg_bottom_tablet = section.settings.mg_bottom_tablet
+            assign mg_bottom_mobile = section.settings.mg_bottom_mobile
+
+            assign padding_full_width = section.settings.padding_full_width
+
+            assign enable_border_top = section.settings.enable_border_top
+            assign enable_border_bottom = section.settings.enable_border_bottom
+            assign color_border_bottom = section.settings.color_border_bottom
+            assign border_style = section.settings.border_style
+
+            if section.settings.enable_layout_special
+                assign bg_card = section.settings.bg_card
+                assign padding_card = section.settings.padding_card
+                assign border_radius_card = section.settings.border_radius_card
+                assign border_width_card = section.settings.border_width_card
+                assign border_color_card = section.settings.border_color_card
+            endif
+        -%}
+
+        .section-block-{{section.id}},
+        .section-block-{{section.id}} .halo-block-header .title .text {
+            background: {% if product_bg_gradient != blank %}{{ product_bg_gradient }}{% else %}{{ product_bg }}{% endif %};
+        }
+
+        {% if enable_border_top and border_style == 'container' %}
+            .section-block-{{section.id}} .halo-block-header {
+                border-top: 1px solid {{ color_border_bottom }};
+            }
+        {% endif %} 
+
+        {% if enable_border_bottom and border_style == 'container' %}
+            .section-block-{{section.id}} .halo-block-header {
+                border-bottom: 1px solid {{ color_border_bottom }};
+            }
+        {% endif %}
+
+        {% if enable_border_top and border_style == 'full' %}
+            .section-block-{{section.id}} {
+                border-top: 1px solid {{ color_border_bottom }};
+            }
+        {% endif %} 
+
+        {% if enable_border_bottom and border_style == 'full' %}
+            .section-block-{{section.id}} {
+                border-bottom: 1px solid {{ color_border_bottom }};
+            }
+        {% endif %}
+
+        .section-block-{{section.id}} .halo-block-header .title {
+            color: {{ color_title }};
+            font-size: {{ fontsize_title | append: 'px'  }};
+            margin-top: {{ mg_top_title | append: 'px' }};
+            margin-bottom: {{ mg_bottom_title | append: 'px' }};
+            /*text-transform: unset;*/
+        }
+
+        .section-block-{{section.id}} .halo-block-header .title:before {
+            background-color: {{ border_color_title }};
+            {% unless section.settings.enable_border_title %}
+                display: none;
+            {% endunless %}
+        }
+
+        {% if section.settings.enable_border_title %}
+        .section-block-{{section.id}} .block-title--style2 {
+            border-bottom: 1px solid {{ border_color_title }};
+        }
+        {% endif %}
+
+        .section-block-{{section.id}} .block-title--style2 .title {
+            padding-bottom: {{ mg_bottom_title | append: 'px' }};
+        }
+
+        {%- if section.settings.enable_layout_special -%}
+            .section-block-{{section.id}} .product-item {
+                background-color: {{ bg_card }};
+                padding: {{ padding_card | append: 'px' }};
+                border-radius: {{ border_radius_card | append: 'px' }};
+                border{% unless section.settings.border_layout_card == 'full' %}-bottom{% endunless %}: {{ border_width_card | append: 'px' }} solid {{ border_color_card }}
+            }
+        {%- endif -%}
+
+        /* Start: Scroll Layout */
+        .section-block-{{section.id}} .products-flex {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            user-select: none;
+            padding-bottom: 45px;
+            overflow: auto;
+            overflow-y: clip;
+            gap: 30px;
+            padding-right: 60px;
+        }
+
+        body.layout_rtl .section-block-{{section.id}} .products-flex {
+            padding-left: 60px;
+            padding-right: 0;
+        }
+
+        .section-block-{{section.id}} .products-flex .product {
+            flex-shrink: 0;
+            flex-grow: 0;
+            padding: 0;
+        }
+
+        .section-block-{{section.id}} .halo-block-content.is-scroll {
+            overflow: hidden;
+        }
+
+        .section-block-{{ section.id }} .products-flex::-webkit-scrollbar {
+            height: var(--scrollbar-height, 3px);
+            cursor: pointer;
+        }
+
+        .section-block-{{section.id}} .products-flex::-webkit-scrollbar-track {
+            background: var(--scrollbar-track-color, #dadada);
+        }
+
+        .section-block-{{section.id}} .products-flex::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb-color, #000);
+        }
+
+        .section-block-{{section.id}} .products-flex::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar-thumb-hover-color, #333);
+        }
+
+        .section-block-{{ section.id }} .products-flex.active .product {
+            pointer-events: none;
+        }
+
+        /* End: Scroll Layout */
+
+        @media (max-width: 1024px) {
+            .section-block-{{ section.id }} .products-flex {
+                --count: 2!important;
+                gap: 15px;
+            }
+            
+            .section-block-{{ section.id }} .products-flex .product {
+                padding: 0 7px;
+            }
+
+            .section-block-{{section.id}} .products-flex {
+                scroll-snap-type: x mandatory;
+                padding-bottom: 0;
+                margin-left: -7px;
+                margin-right: -7px;
+            }
+        
+            .section-block-{{section.id}} .halo-product-block .products-flex .product {
+                scroll-snap-align: start;
+            }
+
+            {% if container == 'fullwidth' %}
+                .section-block-{{section.id}} .container-full {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    display: block;
+                }
+                {% if layout == 'scroll' %}
+                    .section-block-{{section.id}} .container-full {
+                        padding-right: 0;
+                    }
+                {% endif %}
+            {% endif %}
+        }
+
+        @media (max-width: 767px) {
+            .section-block-{{section.id}} {
+                padding-top: {{ mg_top_mobile | append: 'px' }};
+                padding-bottom: {{ mg_bottom_mobile | append: 'px' }};
+            }
+
+            .section-block-{{section.id}} .halo-block-header .title {
+                font-size: {{ fontsize_title_mb | append: 'px'  }};
+            }
+
+            .section-block-{{ section.id }} .products-flex .product {
+                {% if show_half %}
+                    flex-basis: calc(100% / calc(var(--count) - 0.3));
+                    width: calc(100% / calc(var(--count) - 0.3));
+                {% else %}
+                    flex-basis: calc(100% / var(--count));
+                    width: calc(100% / var(--count));
+                {% endif %}
+            }
+
+            {% if container == 'fullwidth' %}
+                .section-block-{{section.id}} .container-full {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                .section-block-{{ section.id }} .products-flex {
+                    --count: 1!important;
+                    gap: 0px;
+                    margin-left: -5px;
+                    margin-right: -5px;
+                }
+                .section-block-{{ section.id }} .products-flex .product {
+                    padding: 0 5px;
+                }
+                {% if layout == 'scroll' %}
+                    .section-block-{{section.id}} .container-full {
+                        padding-right: 0;
+                    }
+                {% endif %}
+            {% endif %}
+        }
+
+        @media (min-width: 551px){
+            .section-block-{{section.id}} .products-grid {
+                margin-left: calc(var(--grid-gap) * (-1));
+                margin-right: calc(var(--grid-gap) * (-1));
+            }
+
+            .section-block-{{section.id}} .products-grid .product {
+                padding-right: var(--grid-gap);
+                padding-left: var(--grid-gap);
+                margin: 0 0 calc(var(--grid-gap) * 2) !important;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .section-block-{{section.id}} .products-carousel .product {
+                padding-right: var(--grid-gap);
+                padding-left: var(--grid-gap);
+            }
+
+            {% if container == 'fullwidth' %}
+                .section-block-{{section.id}} .container-full {
+                    padding-left: {{ padding_full_width | append: 'px' }};
+                    padding-right: {{ padding_full_width | append: 'px' }};
+                    display: block;
+                }
+
+                .section-block-{{section.id}} .products-flex {
+                    padding-right: 200px;
+                }
+                {% if layout == 'scroll' %}
+                    .section-block-{{section.id}} .container-full {
+                        padding-right: 0;
+                    }
+                {% endif %}
+            {% endif %}
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .section-block-{{section.id}} {
+                padding-top: {{ mg_top_tablet | append: 'px' }};
+                padding-bottom: {{ mg_bottom_tablet | append: 'px' }};
+            }
+        }
+
+        @media (min-width: 768px) {
+            .section-block-{{ section.id }} .products-flex .product  {
+                {% if show_half %}
+                    flex-basis: calc(100% / calc(var(--count) + 0.5));
+                    width: calc(100% / calc(var(--count) + 0.5));
+                {% else %}
+                    flex-basis: calc(100% / var(--count));
+                    width: calc(100% / var(--count));
+                {% endif %}
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .section-block-{{section.id}} {
+                padding-top: {{ mg_top_desktop | append: 'px' }};
+                padding-bottom: {{ mg_bottom_desktop | append: 'px' }};
+            }
+        }
+    </style>
+    <{% if swipe %}product-slider-component{% else %}div{% endif %} class="halo-block halo-product-block halo-recently-viewed-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="halo-recently-viewed-block-{{ section.id }}" data-recently-viewed-block data-limit="{{ limit }}" data-layout="{{ layout }}" sectionId="{{ section.id }}" data-image-ratio="{{ image_ratio }}" data-swipe="{{ swipe }}" style="--grid-gap: {{ grid_gap }}">
+        <{% if layout == 'scroll' %}product-scroller{% else %}div{% endif %} class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
+            {%- if block_title != blank -%}
+                <div class="halo-block-header text-{{ block_title_align }} block-title--{{section.settings.style_block_header}}">
+                    <h3 class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                        <span class="text">{{ block_title | escape }}</span>
+                    </h3>
+                </div>
+            {%- endif -%}
+            <div class="halo-block-content {% if layout == 'scroll' %}is-scroll{% endif %}" {% if layout == 'scroll' %}data-drag-container{% endif %}>
+                {%- if layout== 'grid' -%}
+                    {%- liquid
+                        assign product_limit = 0
+                        assign column = section.settings.product_recently_viewed_per_row
+                        if infinite_scroll
+                            assign product_limit = limit
+                        endif
+                    -%}
+                    <div class="recentlyViewed-row products-grid column-{{ column }}{% if swipe %} slider slider--tablet grid grid--peek{% endif %}" data-products-to-show="{{ limit }}" id="recently-viewed-products-list-2">
+                {%- elsif layout == 'slider' -%}
+                    {%- liquid
+                        assign column = section.settings.product_recently_viewed_show
+                        assign dots = section.settings.product_recently_viewed_dots
+                        assign dots_mb = section.settings.product_recently_viewed_dots_mb
+                        assign arrows = section.settings.product_recently_viewed_arrows
+                        assign arrows_mb = section.settings.product_recently_viewed_arrows_mb
+                    -%}
+                    <div class="recentlyViewed-row products-carousel column-{{ column }}"
+                        data-item-to-show="{{ column }}"
+                        data-item-dots="{{ dots }}"
+                        data-item-dots-mb="{{ dots_mb }}"
+                        data-item-arrows="{{ arrows }}"
+                        data-item-arrows-mb="{{ arrows_mb }}"
+                        id="recently-viewed-products-list-2"
+                    >
+                {% elsif layout == 'scroll' %}
+                    {% liquid
+                        assign column = section.settings.product_block_per_view 
+                        assign show_half = section.settings.show_half 
+
+                        assign scroll_height = section.settings.scroll_height | append: 'px'
+                        assign scroll_track_bg = section.settings.scroll_track_bg
+                        assign scroll_thumb_color = section.settings.scroll_thumb_color
+                        assign scroll_thumb_hover_color = section.settings.scroll_thumb_hover_color
+                        assign enable_hover_drag_icon = section.settings.enable_hover_drag_icon
+                    %}
+                    <div class="products-cursor handleMouseLeave" data-enable-hover="{{ enable_hover_drag_icon }}"> 
+                        <div class="products-cursor__outer">    
+                            <div class="products-cursor__inner">
+                                <img src="{{ 'bg-cursor.png' | asset_url }}" alt="Cursor" class="products-cursor__image">
+                                <svg viewBox="0 0 448 512" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow products-cursor__icon" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M311.03 131.515l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L387.887 239H12c-6.627 0-12 5.373-12 12v10c0 6.627 5.373 12 12 12h375.887l-83.928 83.444c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l116.485-116c4.686-4.686 4.686-12.284 0-16.971L328 131.515c-4.686-4.687-12.284-4.687-16.97 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>  
+                    <div        
+                        class="recentlyViewed-row products-flex disable-srollbar-mb column-{{ column }}{% if show_half %} show-half{% endif %}{% if swipe %} slider slider--tablet grid{% endif %}" 
+                        data-drag-parent
+                        style="--count: {{ column }};
+                            --scrollbar-height: {{ scroll_height }};
+                            --scrollbar-track-color: {% if scroll_track_bg != blank and scroll_track_bg != 'rgba(0,0,0,0)' %}{{ scroll_track_bg }} {% endif %};
+                            --scrollbar-thumb-color: {% if scroll_thumb_color != blank and scroll_thumb_color != 'rgba(0,0,0,0)' %}{{ scroll_thumb_color }} {% endif %};
+                            --scrollbar-thumb-hover-color: {% if scroll_thumb_hover_color != blank and scroll_thumb_hover_color != 'rgba(0,0,0,0)' %}{{ scroll_thumb_hover_color }} {% endif %};
+                        "
+                        id="recently-viewed-products-list-2"
+                    >
+                {%- endif -%}
+                    {%- for product in (1..limit) -%}
+                        <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                            {% render 'product-card-loading-no-info',
+                                portrait_aspect_ratio: '133'
+                            %}
+                        </div>
+                    {%- endfor -%}
+                </div>
+                {%- if swipe -%}
+                    <div class="slider-buttons no-js-hidden{% if products_to_display < 4 %} medium-hide{% endif %}{% if products_to_display < 3 %} small-hide{% endif %}">
+                        <div class="slider-counter">
+                            <span class="slider-counter--current">1</span>
+                            <span aria-hidden="true"> / </span>
+                            <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
+                            <span class="slider-counter--total">{{ products_to_display }}</span>
+                        </div>
+                        <div class="slider-action">
+                            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">
+                                {% render 'icon-caret' %}
+                            </button>
+                            <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">
+                                {% render 'icon-caret' %}
+                            </button>
+                        </div>
+                    </div>
+                {%- endif -%}
+            </div>
+        </{% if layout == 'scroll' %}product-scroller{% else %}div{% endif %}>
+    </{% if swipe %}product-slider-component{% else %}div{% endif %}>
+    {{ 'recently-viewed-product.js' | asset_url | script_tag }}
+    <script type="text/javascript">
+        Shopify.Products.recordRecentlyViewed();
+
+        var cookieValue = $.cookie('shopify_recently_viewed');
+
+        if (Shopify.designMode && !cookieValue) {
+            cookieValue = localStorage.getItem('shopify_recently_viewed');
+        }
+
+        if (!(cookieValue !== null && cookieValue !== undefined && cookieValue !== "")){
+            $('#halo-recently-viewed-block-{{ section.id }}').remove();
+        } else {
+            var recentlyViewed = $(this.popup);
+
+            var limit = {{ limit }},
+                expireDay = {{ settings.recently_viewed_expire }};
+
+            const handler = (entries, observer) => {
+                if (!entries[0].isIntersecting || entries[0].target.matches('.ajax-loaded')) return;
+                entries[0].target.classList.add('ajax-loaded');
+                Shopify.Products.showRecentlyViewed({
+                    howManyToShow: limit,
+                    wrapperId: 'recently-viewed-products-list-2', 
+                    templateId: 'recently-viewed-product-block',
+                    layout: '{{ layout }}',
+                    swipe: {{ swipe }},
+                    media: '{{ image_ratio }}',
+                    onComplete: function() {
+                        if (window.location.pathname.indexOf('/products/') !== -1) {
+                            $.cookie('shopify_recently_viewed', cookieValue, { expires: expireDay, path: "/", domain: window.location.hostname });
+                        }
+                    }
+                });
+            }
+
+            this.recentlyViewedBlock = document.querySelector('[data-recently-viewed-block]');
+
+            const config = {
+                threshold: 0.25,
+            }
+
+            new IntersectionObserver(handler.bind(this.recentlyViewedBlock), ({}, config)).observe(this.recentlyViewedBlock);
+        }
+    </script>
+{%- endif -%}

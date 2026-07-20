@@ -1,0 +1,152 @@
+{% schema %}
+{
+  "name": "Timeline Checkpoints",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "checkpoint",
+      "name": "Checkpoint",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)",
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text (optional)",
+          "default": "Read more"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (SVG image recommended)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline Checkpoints",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="timeline-checkpoints">
+  <div class="timeline">
+    {% for block in section.blocks %}
+      <div class="checkpoint">
+        <div class="checkpoint-year">{{ block.settings.year }}</div>
+        <div class="checkpoint-icon">
+          {% if block.settings.icon %}
+            <img src="{{ block.settings.icon | img_url: '200x' }}" alt="Icon for {{ block.settings.year }}" />
+          {% endif %}
+        </div>
+        <div class="checkpoint-description">
+          <p>{{ block.settings.description }}</p>
+          {% if block.settings.link %}
+            <a href="{{ block.settings.link }}" target="_blank">{{ block.settings.link_text }}</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+
+@media (max-width: 749px) {
+section.timeline-checkpoints {
+    margin: 60px 4% !important;
+}
+.checkpoint-description {
+    max-width: 95vw !important;
+}
+}
+
+
+  section.timeline-checkpoints {
+    margin: 60px 35%;
+}
+.timeline-checkpoints:after {
+    content: "⌄";
+    position: absolute;
+    left: -5px;
+    bottom: -4px;
+    font-size: 18px;
+    font-weight: lighter;
+}
+  .timeline-checkpoints {
+    border-left: 1px solid #000;
+    padding-left: 20px;
+    position: relative;
+  }
+  
+  .checkpoint {
+    display: flex;
+    align-items: start;
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+ .checkpoint::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 25px;
+    height: 1px;
+    background-color: #000;
+}
+
+  .checkpoint-year {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-right: 10px;
+    line-height: 0px;
+    margin-bottom: 10px;
+}
+
+  .checkpoint-icon img {
+    width: 46px;
+    height: 46px;
+    margin: 10px;
+}
+  
+  .checkpoint-description {
+    max-width: 25vw;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: 'MCM Favorit Variable';
+}
+
+  .checkpoint-description p {
+    margin: 0;
+  }
+
+  .checkpoint a {
+    color: #000;
+    text-decoration: underline;
+  }
+  div#shopify-section-template--23731560579357__timeline_checkpoints_6gLkb4 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20vh;
+}
+</style>

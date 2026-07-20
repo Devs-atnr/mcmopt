@@ -1,0 +1,160 @@
+<div class="responsive-banner-wrappero">
+  <a href="{{ section.settings.banner_link }}" class="responsive-banner-linko">
+
+    <!-- Desktop Image -->
+    {% if section.settings.desktop_image != blank %}
+      <img 
+        class="banner-imageo desktop-bannero"
+        src="{{ section.settings.desktop_image | img_url: '2048x' }}" 
+        alt="{{ section.settings.heading | escape }}"
+      >
+    {% endif %}
+
+    <!-- Mobile Image -->
+    {% if section.settings.mobile_image != blank %}
+      <img 
+        class="banner-imageo mobile-bannero"
+        src="{{ section.settings.mobile_image | img_url: '750x' }}" 
+        alt="{{ section.settings.heading | escape }}"
+      >
+    {% endif %}
+
+    <div class="banner-content">
+      {% if section.settings.heading != blank %}
+        <h2 class="banner-headingo">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="banner-subheadingo">{{ section.settings.subheading }}</p>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <span class="banner-buttono">{{ section.settings.button_text }}</span>
+      {% endif %}
+    </div>
+
+  </a>
+</div>
+
+<style>
+.responsive-banner-wrappero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  direction: rtl; /* RTL friendly */
+}
+
+.responsive-banner-linko {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.banner-imageo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hide mobile image on desktop */
+.mobile-bannero {
+  display: none !important;
+}
+
+/* Content Area */
+.banner-contento {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; 
+  text-align: left;
+  padding: 20px;
+  pointer-events: none; /* Click passes through */
+}
+
+.banner-headingo {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.banner-subheadingo {
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
+.banner-buttono {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  pointer-events: auto; /* button text clickable if needed */
+}
+
+/* Mobile Styling */
+@media (max-width: 767px) {
+  .desktop-bannero {
+    display: none !important;
+  }
+  .mobile-bannero {
+    display: block !important;
+  }
+
+  .banner-headingo {
+    font-size: 22px;
+  }
+
+  .banner-subheadingo {
+    font-size: 14px;
+  }
+}
+</style>
+
+
+{% schema %}
+{
+  "name": "Founding Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Banner Image"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner Link"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Text"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading Text"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Founding Banner"
+    }
+  ]
+}
+{% endschema %}

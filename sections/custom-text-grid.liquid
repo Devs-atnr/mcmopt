@@ -1,0 +1,237 @@
+<div class="custom-promo-section section-{{ section.id }}">
+  <div class="custom-promo-grid-two">
+    {% for block in section.blocks %}
+      <div class="promo-block" {{ block.shopify_attributes }}>
+       <h4 class="promo-heading-two">{{ block.settings.heading }}</h4>
+       <p class="promo-text">{{ block.settings.para }}</p>
+
+        
+
+    
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+    .promo-text { font-family: 'MCM Favorit Variable';   font-size: 20px; line-height: 1.6;}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-left: 60px;
+    padding-right: 60px;
+    background-color: {{ section.settings.bg_color }};
+  }
+  
+  .custom-promo-grid-two {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile and Tablet stacked layout */
+    gap: 15px;
+    {% comment %} max-width: {{ section.settings.max_width }}px; {% endcomment %}
+    margin: 0 auto;
+  }
+  
+  .promo-block {
+    position: relative;
+    width: 100%;
+  }
+  
+  .promo-link {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+
+  .promo-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5; /* Mimics the vertical rectangle vibe in your screenshots */
+    overflow: hidden;
+  }
+  
+  .promo-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  /* Slight zoom effect on hover if there is a link */
+  .promo-link:hover .promo-image {
+    transform: scale(1.05);
+  }
+  
+  .promo-placeholder {
+    background-color: #e0e0e0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .promo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    {% comment %} background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});  {% endcomment %}
+    padding: 20px;
+  }
+
+  .promo-heading-two {
+    font-family: 'MCM Favorit Bold Extended';
+    color: #black;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: start;
+    margin: 0;
+    letter-spacing: 1px;
+
+  }
+
+  /* Desktop Layout */
+  @media (min-width: 1024px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+    
+    .custom-promo-grid-two  {
+      grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+      gap: 65px;
+    }
+    
+    .promo-heading-two {
+      font-size: 14px;
+    }
+    .promo-text { font-family: 'MCM Favorit Variable';   font-size: 25px; line-height: 1.6;}
+  }
+
+    @media (max-width: 800px) {.section-{{ section.id }} {
+     padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    } 
+.custom-promo-grid-two { gap: 50px;}
+
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Text Grid",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Section Max Width (px)",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image Darken Overlay (%)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 10,
+      "info": "Helps make text readable if images are bright."
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promo_item",
+      "name": "Promo Grid Item",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Overlay Text",
+          "default": "PROMO TEXT"
+        },
+         {
+          "type": "textarea",
+          "id": "para",
+          "label": "Paragraph"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Card Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Text Grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,102 @@
+<!-- Product Slider Section -->
+<section class="product-slider-section">
+  <div class="section-header" style="z-index: 22;">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+  <div class="product-slider-wrapper">
+    <div class="products-slider" data-slick='{"slidesToShow": 5, "slidesToScroll": 5, "autoplay": true, "arrows": true, "dots": false, "infinite": true}'>
+      {% for product in collections[section.settings.collection].products %}
+        <div class="product-item">
+          <div class="card">
+            <div class="card-product">
+              <div class="card-product__wrapper">
+                <div class="card-media">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: '500x500' }}" alt="{{ product.title }}">
+                  </a>
+                </div>
+                <div class="card-product__group">
+                  <h3 class="card__heading">
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                  </h3>
+                  <div class="card-price">
+                    <span class="price">{{ product.price | money }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+ .product-slider-section {
+  margin: 20px 0;
+}
+
+.products-slider {
+  display: block; /* Change from flex to block */
+  overflow: hidden;
+}
+
+.product-item {
+  flex: 0 0 auto; /* Ensure items don't grow or shrink */
+  width: calc(20% - 10px); /* Set width for 5 items per row */
+  margin-right: 10px;
+  float: left; /* Float items for single row */
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+</style>
+
+<script>
+  $(document).ready(function() {
+    if ($.fn.slick) {
+      $('.products-slider').slick({
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        autoplay: true,
+        arrows: true,
+        dots: false,
+        infinite: true,
+        rows: 1, // Ensure only one row is shown
+        adaptiveHeight: true // Adjust height dynamically
+      });
+    } else {
+      console.error('Slick slider library is not loaded. Please check your theme.liquid to include slick.min.js and slick.css.');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Product Collection"
+    }
+  ]
+}
+{% endschema %}

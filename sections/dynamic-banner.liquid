@@ -1,0 +1,239 @@
+<!-- In your theme's sections folder, create a file named: dynamic-banner.liquid -->
+
+{% schema %}
+{
+  "name": "Dynamic Banner",
+  "class": "dynamic-banner-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "English Banner Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "english_desktop_image",
+      "label": "English Desktop Image",
+      "info": "Recommended size: 1920x800px"
+    },
+    {
+      "type": "image_picker",
+      "id": "english_mobile_image",
+      "label": "English Mobile Image",
+      "info": "Recommended size: 1000x1600px"
+    },
+    {
+      "type": "url",
+      "id": "english_link",
+      "label": "English Banner Link"
+    },
+    {
+      "type": "header",
+      "content": "Other Languages Banner Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "other_desktop_image",
+      "label": "Other Languages Desktop Image",
+      "info": "Recommended size: 1920x800px"
+    },
+    {
+      "type": "image_picker",
+      "id": "other_mobile_image",
+      "label": "Other Languages Mobile Image",
+      "info": "Recommended size: 1000x1600px"
+    },
+    {
+      "type": "url",
+      "id": "other_link",
+      "label": "Other Languages Banner Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit Style",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover (Fill container)"
+        },
+        {
+          "value": "contain",
+          "label": "Contain (Fit entire image)"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Section",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Banner_Asm",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .dynamic-banner-section {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .dynamic-banner-section .banner-link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+  }
+  
+  .dynamic-banner-section .banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .dynamic-banner-section .image-container {
+    width: 100%;
+    position: relative;
+  }
+  
+  .dynamic-banner-section .desktop-image {
+    display: block;
+  }
+  
+  .dynamic-banner-section .mobile-image {
+    display: none;
+  }
+  
+  /* Image fit styles */
+  .dynamic-banner-section .image-fit-cover {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+  }
+  
+  .dynamic-banner-section .image-fit-contain {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Placeholder styling */
+  .dynamic-banner-section .placeholder-background {
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .dynamic-banner-section .placeholder-background.desktop-image {
+    aspect-ratio: 1920 / 800;
+  }
+  
+  .dynamic-banner-section .placeholder-background.mobile-image {
+    aspect-ratio: 1000 / 1600;
+  }
+  
+  @media (max-width: 768px) {
+    .dynamic-banner-section .desktop-image {
+      display: none;
+    }
+    
+    .dynamic-banner-section .mobile-image {
+      display: block;
+    }
+  }
+</style>
+
+{% if section.settings.show_section %}
+  <div class="dynamic-banner-section">
+    
+    {% if request.locale.iso_code == 'en' %}
+      <!-- English Banner -->
+      <a href="{{ section.settings.english_link | default: '#' }}" class="banner-link">
+        <div class="image-container">
+          {% if section.settings.english_desktop_image %}
+            {% assign desktop_img = section.settings.english_desktop_image %}
+            <img src="{{ desktop_img | img_url: 'master' }}" 
+                 alt="{{ desktop_img.alt | escape }}" 
+                 class="banner-image desktop-image image-fit-{{ section.settings.image_fit }}"
+                 width="{{ desktop_img.width }}"
+                 height="{{ desktop_img.height }}"
+                 loading="lazy">
+          {% else %}
+            <div class="placeholder-background desktop-image">
+              <p>English Desktop Banner Image</p>
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="image-container">
+          {% if section.settings.english_mobile_image %}
+            {% assign mobile_img = section.settings.english_mobile_image %}
+            <img src="{{ mobile_img | img_url: 'master' }}" 
+                 alt="{{ mobile_img.alt | escape }}" 
+                 class="banner-image mobile-image image-fit-{{ section.settings.image_fit }}"
+                 width="{{ mobile_img.width }}"
+                 height="{{ mobile_img.height }}"
+                 loading="lazy">
+          {% else %}
+            <div class="placeholder-background mobile-image">
+              <p>English Mobile Banner Image</p>
+            </div>
+          {% endif %}
+        </div>
+      </a>
+      
+    {% else %}
+      <!-- Other Languages Banner -->
+      <a href="{{ section.settings.other_link | default: '#' }}" class="banner-link">
+        <div class="image-container">
+          {% if section.settings.other_desktop_image %}
+            {% assign desktop_img = section.settings.other_desktop_image %}
+            <img src="{{ desktop_img | img_url: 'master' }}" 
+                 alt="{{ desktop_img.alt | escape }}" 
+                 class="banner-image desktop-image image-fit-{{ section.settings.image_fit }}"
+                 width="{{ desktop_img.width }}"
+                 height="{{ desktop_img.height }}"
+                 loading="lazy">
+          {% else %}
+            <div class="placeholder-background desktop-image">
+              <p>Other Languages Desktop Banner Image</p>
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="image-container">
+          {% if section.settings.other_mobile_image %}
+            {% assign mobile_img = section.settings.other_mobile_image %}
+            <img src="{{ mobile_img | img_url: 'master' }}" 
+                 alt="{{ mobile_img.alt | escape }}" 
+                 class="banner-image mobile-image image-fit-{{ section.settings.image_fit }}"
+                 width="{{ mobile_img.width }}"
+                 height="{{ mobile_img.height }}"
+                 loading="lazy">
+          {% else %}
+            <div class="placeholder-background mobile-image">
+              <p>Other Languages Mobile Banner Image</p>
+            </div>
+          {% endif %}
+        </div>
+      </a>
+    {% endif %}
+    
+  </div>
+{% endif %}

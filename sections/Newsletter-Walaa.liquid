@@ -1,0 +1,104 @@
+<div class="newsletter-section">
+  <h2>{{ section.settings.title }}</h2>
+  <p>{{ section.settings.description }}</p>
+  <!-- <form method="post" action="/contact#contact_form" id="NewsletterSection"> -->
+    <form id="NewsletterSection">
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <input type="email" name="contact[email]" placeholder="{{ section.settings.input_placeholder }}" required>
+    <button type=""></button>
+  </form>
+</div>
+
+<style>
+  /* Add your custom styles here */
+  .newsletter-section {
+      text-align: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+  }
+  .newsletter-section input[type="email"] {
+      padding: 10px;
+      width: 70%;
+      margin-right: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+  .newsletter-section button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+  .newsletter-section button:hover {
+      background-color: #0056b3;
+  }
+</style>
+
+<style>
+    .newsletter-section {
+        text-align: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .newsletter-section input[type="email"] {
+        padding: 10px;
+        width: 70%;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .newsletter-section button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .newsletter-section button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Newsletter Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Subscribe to Our Newsletter"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Stay updated with our latest news and offers!"
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Input Placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Send"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Section"
+    }
+  ]
+}
+{% endschema %}

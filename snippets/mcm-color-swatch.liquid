@@ -1,0 +1,80 @@
+{%- comment -%}
+  Returns a valid CSS color for a filter swatch label.
+  Usage: {% render 'mcm-color-swatch', color_name: value.value %}
+{%- endcomment -%}
+{%- liquid
+  assign color_key = color_name | downcase | strip | handle
+  assign swatch_color = ''
+
+  case color_key
+    when 'black', 'noir', 'schwarz', 'أسود'
+      assign swatch_color = '#000000'
+    when 'white', 'blanc', 'weiss', 'أبيض'
+      assign swatch_color = '#ffffff'
+    when 'grey', 'gray', 'gris', 'رمادي'
+      assign swatch_color = '#808080'
+    when 'silver', 'argent'
+      assign swatch_color = '#c0c0c0'
+    when 'gold', 'doré', 'dorado'
+      assign swatch_color = '#c9a227'
+    when 'brown', 'marron', 'braun', 'بني'
+      assign swatch_color = '#6b4423'
+    when 'beige', 'nude', 'sand'
+      assign swatch_color = '#d4c4a8'
+    when 'navy', 'marine', 'bleu-marine'
+      assign swatch_color = '#1b2a4a'
+    when 'blue', 'bleu', 'أزرق'
+      assign swatch_color = '#1e4b8f'
+    when 'red', 'rouge', 'rot', 'أحمر'
+      assign swatch_color = '#c41e3a'
+    when 'pink', 'rose', 'وردي'
+      assign swatch_color = '#e8a0bf'
+    when 'green', 'vert', 'grün', 'أخضر'
+      assign swatch_color = '#2d6a4f'
+    when 'yellow', 'jaune', 'gelb', 'أصفر'
+      assign swatch_color = '#f4d03f'
+    when 'orange'
+      assign swatch_color = '#e67e22'
+    when 'purple', 'violet', 'lila'
+      assign swatch_color = '#6b3fa0'
+    when 'burgundy', 'bordeaux', 'wine'
+      assign swatch_color = '#722f37'
+    when 'cognac', 'tan', 'camel', 'caramel'
+      assign swatch_color = '#9a5c2e'
+    when 'ivory', 'cream', 'off-white'
+      assign swatch_color = '#fffff0'
+    when 'multicolor', 'multi', 'multicolour'
+      assign swatch_color = 'linear-gradient(135deg, #c41e3a 0%, #f4d03f 33%, #2d6a4f 66%, #1e4b8f 100%)'
+  endcase
+
+  if swatch_color == blank
+    assign last_word = color_name | split: ' ' | last | downcase | strip | handle
+    case last_word
+      when 'black'
+        assign swatch_color = '#000000'
+      when 'white'
+        assign swatch_color = '#ffffff'
+      when 'grey', 'gray'
+        assign swatch_color = '#808080'
+      when 'brown'
+        assign swatch_color = '#6b4423'
+      when 'navy'
+        assign swatch_color = '#1b2a4a'
+      when 'blue'
+        assign swatch_color = '#1e4b8f'
+      when 'red'
+        assign swatch_color = '#c41e3a'
+      when 'pink'
+        assign swatch_color = '#e8a0bf'
+      when 'green'
+        assign swatch_color = '#2d6a4f'
+      when 'beige'
+        assign swatch_color = '#d4c4a8'
+      when 'gold'
+        assign swatch_color = '#c9a227'
+      when 'silver'
+        assign swatch_color = '#c0c0c0'
+    endcase
+  endif
+-%}
+{{- swatch_color -}}

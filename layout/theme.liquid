@@ -61,6 +61,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
         {%- endif -%}
         <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+        {%- if template == 'index' -%}
+          <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/HP_Banners_Desktop_cdc4d534-304e-4b4e-afce-0e31e1477bfd.png" media="(min-width: 769px)" fetchpriority="high">
+          <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/HP_Banners_Mobile_02bf7bd0-a718-4dc4-b6b0-dbdc59f0389e.png" media="(max-width: 768px)" fetchpriority="high">
+        {%- endif -%}
 
       {% comment %}
 

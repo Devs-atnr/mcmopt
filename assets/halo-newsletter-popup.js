@@ -3,7 +3,7 @@ class NewsletterPopup extends HTMLElement {
         super();
 
         this.popup = this;
-        this.timeToShow = parseInt(this.popup.getAttribute('data-delay'));
+        this.timeToShow = Math.max(10000, parseInt(this.popup.getAttribute('data-delay')) || 10000);
         this.expiresDate = this.popup.getAttribute('data-expire');
         if (this.getCookie('newsletter-popup') === ''){
             var popup = this.popup;

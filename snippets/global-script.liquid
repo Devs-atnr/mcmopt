@@ -1,4 +1,15 @@
-<!-- Script tags moved to layout/theme.liquid bottom to completely avoid render-blocking requests -->
+<script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
+<!-- {{ 'menu.js' | asset_url | script_tag }} -->
+
+{%- if settings.show_quick_search -%}
+    <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if settings.banner_animation == 'effect_fade_up' -%}
+    <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 {% liquid
     if settings.enable_currencies

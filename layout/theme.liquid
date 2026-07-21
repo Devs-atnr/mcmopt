@@ -72,6 +72,8 @@
         <style>
           .klaviyo-form,
           div[class*="klaviyo-form"],
+          .kl-private-reset-css-vocabulary,
+          div[class*="kl-private-reset-css-vocabulary"],
           #klaviyo-forms-container,
           .klaviyo-onsite-trigger {
             display: none !important;
@@ -81,6 +83,8 @@
           }
           body.show-klaviyo-forms .klaviyo-form,
           body.show-klaviyo-forms div[class*="klaviyo-form"],
+          body.show-klaviyo-forms .kl-private-reset-css-vocabulary,
+          body.show-klaviyo-forms div[class*="kl-private-reset-css-vocabulary"],
           body.show-klaviyo-forms #klaviyo-forms-container,
           body.show-klaviyo-forms .klaviyo-onsite-trigger {
             display: block !important;
@@ -112,16 +116,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="theme-color" content="">
+         <meta name="theme-color" content="">
         <link rel="canonical" href="{{ canonical_url }}" canonical-shop-url="{{ shop.url }}/">
         {%- if settings.favicon != blank -%}
             <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
         {%- endif -%}
         <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-        {%- if template == 'index' -%}
-          <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/HP_Banners_Desktop_cdc4d534-304e-4b4e-afce-0e31e1477bfd.png" media="(min-width: 769px)" fetchpriority="high">
-          <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/HP_Banners_Mobile_02bf7bd0-a718-4dc4-b6b0-dbdc59f0389e.png" media="(max-width: 768px)" fetchpriority="high">
-        {%- endif -%}
 
       {% comment %}
 

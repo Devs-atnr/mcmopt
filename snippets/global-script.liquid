@@ -1,6 +1,6 @@
-{{ 'vendor.js' | asset_url | script_tag }}
-{{ 'global.js' | asset_url | script_tag }}
-{{ 'lazysizes.min.js' | asset_url | script_tag }}
+<script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
 <!-- {{ 'menu.js' | asset_url | script_tag }} -->
 
 {%- if settings.show_quick_search -%}

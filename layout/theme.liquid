@@ -67,6 +67,47 @@
           setTimeout(loadTrackingScripts, 4000);
         })();
         </script>
+
+        <!-- Defer Klaviyo Popup to prevent LCP drag (Zero Layout Change) -->
+        <style>
+          .klaviyo-form,
+          div[class*="klaviyo-form"],
+          #klaviyo-forms-container,
+          .klaviyo-onsite-trigger {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+          }
+          body.show-klaviyo-forms .klaviyo-form,
+          body.show-klaviyo-forms div[class*="klaviyo-form"],
+          body.show-klaviyo-forms #klaviyo-forms-container,
+          body.show-klaviyo-forms .klaviyo-onsite-trigger {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+          }
+        </style>
+        <script>
+          (function() {
+            var klaviyoEnabled = false;
+            function enableKlaviyoForms() {
+              if (klaviyoEnabled) return;
+              klaviyoEnabled = true;
+              document.body.classList.add('show-klaviyo-forms');
+              window.removeEventListener('scroll', enableKlaviyoForms);
+              window.removeEventListener('touchstart', enableKlaviyoForms);
+              window.removeEventListener('click', enableKlaviyoForms);
+            }
+            // Defer popup display until first real user interaction or 9s timeout
+            window.addEventListener('scroll', enableKlaviyoForms, { passive: true });
+            window.addEventListener('touchstart', enableKlaviyoForms, { passive: true });
+            window.addEventListener('click', enableKlaviyoForms, { passive: true });
+            setTimeout(enableKlaviyoForms, 9000);
+          })();
+        </script>
+
       <meta name="google-site-verification" content="VjLUE33A6OJqReUpjRQ4tFxTUJB9UM_Nk1TVNYESa0A" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

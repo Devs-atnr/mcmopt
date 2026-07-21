@@ -8,8 +8,10 @@
 	{{ 'layout_rtl.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
-{{ 'animated.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'animated.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'animated.css' | asset_url | stylesheet_tag }}</noscript>
+<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
 <link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-loading-banner.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-quick-cart.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -17,19 +19,26 @@
 <noscript>{{ 'vendor.css' | asset_url | stylesheet_tag }}</noscript>
 
 {% if settings.product_card_layout == '02' %}
-	{{ 'component-card-02.css' | asset_url | stylesheet_tag }}
+	<link rel="stylesheet" href="{{ 'component-card-02.css' | asset_url }}" media="print" onload="this.media='all'">
+	<noscript>{{ 'component-card-02.css' | asset_url | stylesheet_tag }}</noscript>
 {% elsif settings.product_card_layout == '03' %}
-	{{ 'component-card-03.css' | asset_url | stylesheet_tag }}
+	<link rel="stylesheet" href="{{ 'component-card-03.css' | asset_url }}" media="print" onload="this.media='all'">
+	<noscript>{{ 'component-card-03.css' | asset_url | stylesheet_tag }}</noscript>
 {% elsif settings.product_card_layout == '04' %}
-	{{ 'component-card-04.css' | asset_url | stylesheet_tag }}
+	<link rel="stylesheet" href="{{ 'component-card-04.css' | asset_url }}" media="print" onload="this.media='all'">
+	<noscript>{{ 'component-card-04.css' | asset_url | stylesheet_tag }}</noscript>
 {% elsif settings.product_card_layout == '05' %}
-	{{ 'component-card-05.css' | asset_url | stylesheet_tag }}
+	<link rel="stylesheet" href="{{ 'component-card-05.css' | asset_url }}" media="print" onload="this.media='all'">
+	<noscript>{{ 'component-card-05.css' | asset_url | stylesheet_tag }}</noscript>
 {% elsif settings.product_card_layout == '06' %}
-	{{ 'component-card-06.css' | asset_url | stylesheet_tag }}
+	<link rel="stylesheet" href="{{ 'component-card-06.css' | asset_url }}" media="print" onload="this.media='all'">
+	<noscript>{{ 'component-card-06.css' | asset_url | stylesheet_tag }}</noscript>
 {% elsif settings.product_card_layout == '07' %}
-	{{ 'component-card-07.css' | asset_url | stylesheet_tag }}
+	<link rel="stylesheet" href="{{ 'component-card-07.css' | asset_url }}" media="print" onload="this.media='all'">
+	<noscript>{{ 'component-card-07.css' | asset_url | stylesheet_tag }}</noscript>
 {% elsif settings.product_card_layout == '08' %}
-	{{ 'component-card-08.css' | asset_url | stylesheet_tag }}
+	<link rel="stylesheet" href="{{ 'component-card-08.css' | asset_url }}" media="print" onload="this.media='all'">
+	<noscript>{{ 'component-card-08.css' | asset_url | stylesheet_tag }}</noscript>
 {% endif %}
 
 <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">

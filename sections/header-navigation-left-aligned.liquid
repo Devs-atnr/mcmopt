@@ -1,4 +1,5 @@
-{{ 'component-megamenu.css' | asset_url | stylesheet_tag: preload: true }}
+<link rel="stylesheet" href="{{ 'component-megamenu.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-megamenu.css' | asset_url | stylesheet_tag }}</noscript>
 <style>
     .menu-lv-1 .label{border-radius:10px;font-family:var(--font-body-family);padding:0 11px;line-height:17px;height:17px}.menu-lv-1 .label:before{display:none}.menu-lv-1__action .label{right:8px;top:-17px}.scrolled-past-header .menu-lv-1__action>.label {top:-17px}
     @media screen and (max-width: 1024px) {

@@ -1,3 +1,4 @@
+<link rel="preload" href="{{ 'base.css' | asset_url }}" as="style">
 {{ 'base.css' | asset_url | stylesheet_tag }}
 
 {%- if settings.banner_animation == 'effect_fade_up' or settings.animations_hover_elements == '3d-lift' or settings.animations_hover_elements == 'vertical-lift' -%}
@@ -5,6 +6,7 @@
 {%- endif -%}
 
 {%- if settings.enable_layout_rtl -%}
+	<link rel="preload" href="{{ 'layout_rtl.css' | asset_url }}" as="style">
 	{{ 'layout_rtl.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 

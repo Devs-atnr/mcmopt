@@ -1,4 +1,5 @@
-{{ 'component-megamenu.css' | asset_url | stylesheet_tag: preload: true }}
+<link rel="stylesheet" href="{{ 'component-megamenu.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-megamenu.css' | asset_url | stylesheet_tag }}</noscript>
 <style>
     @media screen and (max-width: 1024px) {
         .header-mobile--icon .header__icon--wishlist .wishlist-count-bubble {top: -8px}

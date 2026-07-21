@@ -411,8 +411,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% section 'halo-toolbar-mobile' %}
 
             <ul hidden><li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li></ul>
-            
-            {% render 'global-script-2' %}
+
+        <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+        <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+        <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
+        {%- if settings.show_quick_search -%}
+            <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+        {%- endif -%}
+        {%- if settings.banner_animation == 'effect_fade_up' -%}
+            <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+        {%- endif -%}
+        {% render 'global-script-2' %}
         </div>
         {% render 'halo-popup' %}
 

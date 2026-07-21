@@ -238,6 +238,13 @@
         <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
         <link rel="preload" href="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/MCMFavorit-BoldExtended.woff2?v=1754558511" as="font" type="font/woff2" crossorigin>
 
+        {%- if template == 'index' -%}
+          <!-- Mobile LCP Image Preload (Matches Background Image URL exactly) -->
+          <link rel="preload" as="image" href="//mcmworldwide.sa/cdn/shop/files/HP_Banners_Mobile_02bf7bd0-a718-4dc4-b6b0-dbdc59f0389e.png?v=1783522302" media="(max-width: 768px)" fetchpriority="high">
+          <!-- Desktop LCP Image Preload (Matches Background Image URL exactly) -->
+          <link rel="preload" as="image" href="//mcmworldwide.sa/cdn/shop/files/HP_Banners_Desktop_cdc4d534-304e-4b4e-afce-0e31e1477bfd.png?v=1783522303" media="(min-width: 769px)" fetchpriority="high">
+        {%- endif -%}
+
       {% comment %}
 
         <title>{{ page_title }} {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%} {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%} {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}</title>

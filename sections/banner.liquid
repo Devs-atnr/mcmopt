@@ -61,7 +61,7 @@
       "type": "color",
       "id": "banner_text_color",
       "label": "Banner Text Color",
-      "default": "#ffffff" // Default to white
+      "default": "#ffffff"
     }
   ],
   "presets": [
@@ -72,7 +72,7 @@
 }
 {% endschema %}
 
-<div class="banner-section" style="background-image: url({{ section.settings.banner_background_image | img_url: 'master' }});">
+<div class="banner-section" style="background-image: url('{{ section.settings.banner_background_image | img_url: 'master' }}');">
   <div class="banner-content" style="top: {{ section.settings.vertical_position }}%; left: {{ section.settings.horizontal_position }}%;">
     <h1 style="font-size: {{ section.settings.font_size }}px; color: {{ section.settings.banner_text_color }};">
       {{ section.settings.banner_text }}
@@ -89,9 +89,7 @@
     height: 150vh !important;
     background-size: cover;
     background-position: 0 75px;
-    background-attachment: url({{ section.settings.banner_background_image | img_url: 'master' }});;
     position: relative;
-    background-size: cover;
     padding: 2px;
     max-width: 100vw;
     color: #fff; /* General text color */

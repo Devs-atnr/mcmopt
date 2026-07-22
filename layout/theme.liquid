@@ -238,12 +238,7 @@
         <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
         <link rel="preload" href="https://cdn.shopify.com/s/files/1/0888/3594/8829/files/MCMFavorit-BoldExtended.woff2?v=1754558511" as="font" type="font/woff2" crossorigin>
 
-        {%- if template == 'index' -%}
-          <!-- Mobile LCP Image Preload (Matches Background Image URL exactly) -->
-          <link rel="preload" as="image" href="//mcmworldwide.sa/cdn/shop/files/HP_Banners_Mobile_02bf7bd0-a718-4dc4-b6b0-dbdc59f0389e.png?v=1783522302" media="(max-width: 768px)" fetchpriority="high">
-          <!-- Desktop LCP Image Preload (Matches Background Image URL exactly) -->
-          <link rel="preload" as="image" href="//mcmworldwide.sa/cdn/shop/files/HP_Banners_Desktop_cdc4d534-304e-4b4e-afce-0e31e1477bfd.png?v=1783522303" media="(min-width: 769px)" fetchpriority="high">
-        {%- endif -%}
+
 
       {% comment %}
 
@@ -455,45 +450,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         
+let isBannerScrolling = false;
 window.addEventListener('scroll', function() {
-  const containers = document.querySelectorAll('.shopify-section-banner .container-box');
+  if (!isBannerScrolling) {
+    window.requestAnimationFrame(function() {
+      const containers = document.querySelectorAll('.shopify-section-banner .container-box');
+      containers.forEach(function(container) {
+        const contentBox = container.querySelector('.content-box');
+        if (!contentBox) return;
+        const containerRect = container.getBoundingClientRect();
+        const containerTop = containerRect.top;
+        const containerBottom = containerRect.bottom;
+        const windowHeight = window.innerHeight;
 
-  containers.forEach(function(container) {
-    const contentBox = container.querySelector('.content-box');
-    const containerRect = container.getBoundingClientRect();
-    const containerTop = containerRect.top;
-    const containerBottom = containerRect.bottom;
-    const windowHeight = window.innerHeight;
-
-    // Adjust behavior for smaller screens
-    if (window.innerWidth > 768) {
-      // Stick the content box to the bottom of the viewport when the container is partially visible
-      if (containerTop < windowHeight && containerBottom > windowHeight) {
-        contentBox.style.position = 'fixed';
-        contentBox.style.bottom = '0';
-        contentBox.style.top = 'unset';
-      } 
-      // Stop at the bottom of the container
-      else if (containerBottom <= windowHeight) {
-        contentBox.style.position = 'absolute';
-        contentBox.style.bottom = '0';
-        contentBox.style.top = 'unset';
-      } 
-      // Stick to the top of the container when scrolling up past the container's top
-      else if (containerTop >= 0) {
-        contentBox.style.position = 'absolute';
-        contentBox.style.top = '0';
-        contentBox.style.bottom = 'unset';
-      }
-    } else {
-      // For smaller screens, ensure content stays in view without fixing
-      contentBox.style.position = 'absolute';
-      contentBox.style.bottom = '0';
-      contentBox.style.top = 'unset';
-    }
-  });
-});
-
+        if (window.innerWidth > 768) {
+          if (containerTop < windowHeight && containerBottom > windowHeight) {
+            contentBox.style.position = 'fixed';
+            contentBox.style.bottom = '0';
+            contentBox.style.top = 'unset';
+          } else if (containerBottom <= windowHeight) {
+            contentBox.style.position = 'absolute';
+            contentBox.style.bottom = '0';
+            contentBox.style.top = 'unset';
+          } else if (containerTop >= 0) {
+            contentBox.style.position = 'absolute';
+            contentBox.style.top = '0';
+            contentBox.style.bottom = 'unset';
+          }
+        } else {
+          contentBox.style.position = 'absolute';
+          contentBox.style.bottom = '0';
+          contentBox.style.top = 'unset';
+        }
+      });
+      isBannerScrolling = false;
+    });
+    isBannerScrolling = true;
+  }
+}, { passive: true });
 </script>     
       {% if page.handle == 'mcm-icons-edit' %}
       <!-- <link
